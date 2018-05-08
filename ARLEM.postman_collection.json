@@ -1,0 +1,652 @@
+{
+	"info": {
+		"_postman_id": "0c2d6dd0-e12b-0745-7708-287ac827f172",
+		"name": "ARLEM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"description": "",
+			"item": [
+				{
+					"name": "/signin",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\":\"rizalishan@gmail.com\",\"password\":\"123456\"}"
+						},
+						"url": {
+							"raw": "{{api}}/signin",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"signin"
+							]
+						},
+						"description": "Sign In user an return user data with updated token"
+					},
+					"response": []
+				},
+				{
+					"name": "/signup",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"Rizwan Ali\",\"email\":\"rizalissdhsan@gmail.com\",\"password\":\"123456\"}"
+						},
+						"url": {
+							"raw": "{{api}}/signup",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"signup"
+							]
+						},
+						"description": "Sign In user an return user data with updated token"
+					},
+					"response": []
+				},
+				{
+					"name": "/forget",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\":\"rizalishan@gmail.com\"}"
+						},
+						"url": {
+							"raw": "{{api}}/forget",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"forget"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/change",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"password\":\"123456\",\"repassword\":\"123456\"}"
+						},
+						"url": {
+							"raw": "{{api}}/change/:code",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"change",
+								":code"
+							],
+							"variable": [
+								{
+									"key": "code",
+									"value": "eyJpdiI6Ik5HU3pPUkpLZHI1cXIwMUJrZnU5a3c9PSIsInZhbHVlIjoic3RtdmxVQUNkOG9rUVhLeElLY2l1cVpENURoKytyYnBTeVpNdWpaXC9sSkk9IiwibWFjIjoiMWM0ODg1YmNhMTUwN2E1OTdiOTY2MGI5YTRkZGZjOTMwMjkxMGU4NzMzMGRkNjVhODlkYTQ4YzBjMDg3MTZmYiJ9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/activate",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"email\":\"rizalishan@gmail.com\",\"code\":\"eyJpdiI6Ik5HU3pPUkpLZHI1cXIwMUJrZnU5a3c9PSIsInZhbHVlIjoic3RtdmxVQUNkOG9rUVhLeElLY2l1cVpENURoKytyYnBTeVpNdWpaXC9sSkk9IiwibWFjIjoiMWM0ODg1YmNhMTUwN2E1OTdiOTY2MGI5YTRkZGZjOTMwMjkxMGU4NzMzMGRkNjVhODlkYTQ4YzBjMDg3MTZmYiJ9\"}"
+						},
+						"url": {
+							"raw": "{{api}}/activate",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"activate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Workplaces",
+			"description": "",
+			"item": [
+				{
+					"name": "/workplaces",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "kvgzJZqqBH7uzWnC2BvzNdYbjIQ0gWfy56D",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{api}}/workplaces?include=author",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"workplaces"
+							],
+							"query": [
+								{
+									"key": "include",
+									"value": "author"
+								}
+							]
+						},
+						"description": "Sign In user an return user data with updated token"
+					},
+					"response": []
+				},
+				{
+					"name": "/workplaces/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "DZ31tdDeL7FaESARXdP69F4MgS9EIBalHZN",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{api}}/workplace/:id",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"workplace",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Sign In user an return user data with updated token"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tangibles",
+			"description": "",
+			"item": [
+				{
+					"name": "/tangibles",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{api}}/tangibles?type=detectable",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"tangibles"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "detectable"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/trigger/person/create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "QlvCF7mEZ428Hcu9gyBKEIho2QmyiZDr4yC",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"Rizwan Ali\",\"twitter\":\"rizalishan\",\"mbox\":\"rizalishan@gmail.com\",\"detectable\":\"2\",\"persona\":\"persona/rizalishan\"}"
+						},
+						"url": {
+							"raw": "{{api}}/tangible/person/create",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"tangible",
+								"person",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/trigger/place/create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "QlvCF7mEZ428Hcu9gyBKEIho2QmyiZDr4yC",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"id_name\":\"item\",\"name\":\"Item ok ka\",\"detectable\":\"2\"}"
+						},
+						"url": {
+							"raw": "{{api}}/tangible/place/create",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"tangible",
+								"place",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/trigger/thing/create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"id_name\":\"item\",\"name\":\"Item ok ka\",\"urn\":\"http://127.0.0.0:8000/urn/thing\",\"detectable\":\"2\",\"poi\":[{\"name\":\"Left Siee\",\"x\":0.2,\"y\":0.2,\"z\":0.2,\"relativeTo\":2}]}"
+						},
+						"url": {
+							"raw": "{{api}}/tangible/thing/create",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"tangible",
+								"thing",
+								"create"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Configurables",
+			"description": "",
+			"item": [
+				{
+					"name": "/configurables",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "FFa5hkn0wJiZ60dpoumblY7LSIdX1qETOrK",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{api}}/configurables",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"configurables"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/configurable/app/create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"Rizwan Ali\",\"manifest\":\"asdfa/rizalishan\"}"
+						},
+						"url": {
+							"raw": "{{api}}/configurable/app/create",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"configurable",
+								"app",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/configurable/device/create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"Rizwan Ali\",\"manifest\":\"asdfa/rizalishan\"}"
+						},
+						"url": {
+							"raw": "{{api}}/configurable/device/create",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"configurable",
+								"device",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/configurable/device/types",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"Rizwan Ali\",\"type\":1}"
+						},
+						"url": {
+							"raw": "{{api}}/configurable/device/types",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"configurable",
+								"device",
+								"types"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Triggers",
+			"description": "",
+			"item": [
+				{
+					"name": "/triggers",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{api}}/triggers",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"triggers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/template/get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/template/get",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"template",
+						"get"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "pwalice",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "alice",
+				"type": "string"
+			},
+			{
+				"key": "saveHelperData",
+				"type": "any"
+			},
+			{
+				"key": "showPassword",
+				"value": false,
+				"type": "boolean"
+			}
+		]
+	}
+}
