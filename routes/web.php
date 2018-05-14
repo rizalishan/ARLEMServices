@@ -26,15 +26,19 @@ Route::group(["middleware" => ["auth"]], function () {
     Route::get("/dashboard", "MemberController@getDashboard");
     /* Workplace Routes */
     Route::get("/workplaces", "WorkplaceController@getList");
+    Route::get("/workplace/select", "WorkplaceController@getSelectList");
     Route::get("/workplace/{id}", "WorkplaceController@getDetail");
     Route::post("/workplace", "WorkplaceController@postCreate");
     Route::put("/workplace/{id}", "WorkplaceController@putEdit");
     Route::delete("/workplace/{id}", "WorkplaceController@deleteRemove");
+    Route::get("/entities", "WorkplaceController@getEnityList");
 
     Route::get("/tangibles", "TangibleController@getList");
     Route::post("/tangible/person/create", "TangibleController@postCreatePerson");
     Route::post("/tangible/place/create", "TangibleController@postCreatePlace");
     Route::post("/tangible/thing/create", "TangibleController@postCreateThing");
+    Route::get("/tangible/{type}/select", "TangibleController@getListSelect");
+
 
     Route::get("/configurables", "ConfigurableController@getList");
     Route::post("/configurable/app/create", "ConfigurableController@postCreateApp");
@@ -45,6 +49,21 @@ Route::group(["middleware" => ["auth"]], function () {
     Route::get("/triggers", "TriggerController@getList");
 
     Route::get("/sensors", "SensorController@getList");
+    Route::post("/sensor/create", "SensorController@postCreate");
+    Route::get("/sensor/select", "SensorController@getListSelectList");
+
+    /* Activity Routes */
+
+    Route::get("/activities", "ActivityController@getList");
+    Route::get("/activity/{id}", "ActivityController@getDetail");
+    Route::post("/activity", "ActivityController@postCreate");
+    Route::put("/activity/{id}", "ActivityController@putEdit");
+    Route::delete("/activity/{id}", "ActivityController@deleteRemove");
+
+    Route::get("/action/select", "ActivityController@getActionSelectList");
+    Route::get("/action/trigger/mode/select", "ActivityController@getTriggerModeSelectList");
+
+    Route::get("/viewport/select", "ActivityController@getViewPortSelectList");
 
 
 });

@@ -46,16 +46,18 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
-        if ($exception instanceof HttpException) {
-            return response()->json(["message" => [trans("messages.".$exception->getStatusCode())]], $exception->getStatusCode());
-        } else if($exception instanceOf ValidationException){
-            return response()->json(["message" => $exception->response->original],401);
-        } else if ($exception instanceof PDOException) {
-            return response()->json(["message" => [trans("messages.500")]],500);
-        } else if($exception instanceOf ValidationException){
-            return response()->json(["message" => [$exception->getMessage()]],401);
-        } else if(env('APP_ENV') == 'production') {
-            return response()->json(["message" => [$exception->getMessage()]],500);
+        if(env("APP_ENV") != "local"){
+            if ($exception instanceof HttpException) {
+                return response()->json(["message" => [trans("messages.".$exception->getStatusCode())]], $exception->getStatusCode());
+            } else if($exception instanceOf ValidationException){
+                return response()->json(["message" => $exception->response->original],401);
+            } else if ($exception instanceof PDOException) {
+                return response()->json(["message" => [trans("messages.500")]],500);
+            } else if($exception instanceOf ValidationException){
+                return response()->json(["message" => [$exception->getMessage()]],401);
+            } else if(env('APP_ENV') == 'production') {
+                return response()->json(["message" => [$exception->getMessage()]],500);
+            }
         }
 
         return parent::render($request, $exception);

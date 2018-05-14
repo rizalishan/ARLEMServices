@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Tangibles\Person;
+use App\Models\Resource;
 use App\Models\Tangibles\Places;
 use App\Models\Tangibles\Thing;
 
@@ -70,5 +71,23 @@ class Workplace extends Model
         //dd($workplaceXML);
         print($workplaceXML->asXML());
 
+    }
+
+    public static function create($author, $input)
+    {
+        $objWorkplace = new Workplace;
+
+        $objWorkplace->name = $input['name'];
+        $objWorkplace->author = $author;
+        $objWorkplace->save();
+        $id = $objWorkplace->id;
+        foreach($input['items'] as $item){
+            $objResource = new Resource;
+            $objResource->id = $item["id"];
+            $objResource->type = Resource::typeParser($item["type"]);
+            $objResource->workplace = $id;
+            $objResource->author = $author;
+            $objResource->save();
+        }
     }
 }

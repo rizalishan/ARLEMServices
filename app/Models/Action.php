@@ -5,23 +5,27 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Action extends Model
-{    
+{
     public $timestamps = false;
     protected $table = 'actions';
 
-    public function author() {
+    public function author()
+    {
         return $this->belongsTo("App\\User", "author", "id");
     }
 
-    public function activity() {
+    public function activity()
+    {
         return $this->belongsTo("App\\Models\\Activity", "activity", "id");
     }
 
-    public function viewport() {
+    public function viewport()
+    {
         return $this->belongsTo("App\\Models\\Viewport", "viewport", "id");
     }
 
-    public function triggers() {
+    public function triggers()
+    {
         return $this->hasMany("App\\Models\\ActionTrigger", "action", "id");
     }
 
@@ -48,8 +52,29 @@ class Action extends Model
 
             $xml = new \SimpleXMLElement($xml);
             return str_replace('<?xml version="1.0"?>', '', $xml->asXML());
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             echo $e;
         }
+    }
+
+    public static function create($activity, $author, $data)
+    {
+        $objAction = new Action;
+        $objAction->name = $data["name"];
+        $objAction->id_name = $data["id"];
+        $objAction->viewport = $data["viewport"];
+        $objAction->instructionTitle = $data["instructionTitle"];
+        $objAction->instructionDescription = $data["instructionDescription"];
+        $objAction->activity = $activity;
+        $objAction->author = $author;
+        $objAction->save();
+
+        $id = $objAction->id;
+
+        foreach($data["triggers"] as $trigger) {
+            ActionTrigger::create($id, $author, $trigger);
+        }
+
+        return $id;
     }
 }

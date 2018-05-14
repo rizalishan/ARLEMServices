@@ -46,7 +46,7 @@ class Activity extends Model
     public function toXML()
     {
 
-        $xml = '<activity id="' . $this->id . '" name="' . $this->name . '" language="' . $this->language . '" workplace="http://localhost:8000/workplace/generate/' . $this->workplace . '" start="' . $this->start . '">';
+        $xml = '<activity id="' . $this->id . '" name="' . $this->name . '" language="' . $this->language . '" workplace="http://localhost:8080/workplace/generate/' . $this->workplace . '" start="' . $this->start . '">';
 
         $items = [];
 
@@ -54,7 +54,7 @@ class Activity extends Model
             $xml .= $action->toXML();
         }
 
-        if ($this->instructions != null){
+        if ($this->instructions != null) {
             $xml .= $this->instructions->toXML();
         }
 
@@ -65,5 +65,26 @@ class Activity extends Model
         //dd($workplaceXML);
         print($xml->asXML());
 
+    }
+
+    public static function create($user, $data)
+    {
+        $objActivity = new Activity;
+        $objActivity->name = $data["name"];
+        $objActivity->workplace = $data["workplace"];
+        $objActivity->language = $data["language"];
+        $objActivity->description = $data["description"];
+        $objActivity->author = $user;
+        $objActivity->save();
+
+        $id = $objActivity->id;
+
+        foreach ($data["actions"] as $key => $action) {
+            $actionId = Action::create($id, $user, $action);
+            if ($key == 0) {
+                $objActivity->start = $actionId;
+                $objActivity->save();
+            }
+        }
     }
 }

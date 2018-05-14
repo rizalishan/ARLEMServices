@@ -43,7 +43,7 @@ class AuthController extends Controller
             }
             return $this->error(["Invalid credentails. Please try again."], 401);
         } catch (Exception $e) {
-            $this->error(trans("unexpected_error"), 500);
+            $this->error($e.getMessage(), 500);
         }
     }
 

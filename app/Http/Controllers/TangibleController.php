@@ -29,6 +29,12 @@ class TangibleController extends Controller
         return $this->success($data, 200);
     }
 
+    public function getListSelect(Request $request, $type)
+    {
+        $data = Tangible::select("id", "name")->where("type", $type)->orderBy('name')->get()->all();
+        return $this->success($data, 200);
+    }
+
     public function getDetail($id)
     {
         $data = Tangible::findOrFail($id);
