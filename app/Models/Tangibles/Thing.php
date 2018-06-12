@@ -78,4 +78,10 @@ class Thing extends Model
 
         return str_replace('<?xml version="1.0"?>','',$xml->asXML());
     }
+
+    public function toJSONP($id)
+    {
+        return $this::where("id", $id)->with(["detectable", "detectable.sensor", "detectable.sensor.author", "detectable.author", "author", "poi"])->first()->toArray();
+    }
+
 }

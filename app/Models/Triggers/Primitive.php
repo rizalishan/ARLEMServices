@@ -41,4 +41,11 @@ class Primitive extends Model
         }
         return str_replace('<?xml version="1.0"?>','',$xml->asXML());
     }
+
+
+
+    public function toJSONP($id)
+    {
+        return $this::where("id", $id)->with(["type", "author"])->first()->toArray();
+    }
 }

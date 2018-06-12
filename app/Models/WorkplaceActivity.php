@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class WorkplaceActivity extends Model
 {    
     public $timestamps = false;
-    protected $table = 'workplaces_activities';
+    protected $table = 'workplace_activities';
 
     public function author() {
         return $this->belongsTo("App\\User", "author", "id");

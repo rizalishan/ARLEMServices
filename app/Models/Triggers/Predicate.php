@@ -32,4 +32,9 @@ class Predicate extends Model
             return str_replace('<?xml version="1.0"?>', '', $xml->asXML());
         }*/
     }
+
+    public function toJSONP($id)
+    {
+        return $this::where("id", $id)->with(["primitives", "primitives.primitive", "primitives.primitive.author", "author"])->first()->toArray();
+    }
 }

@@ -20,6 +20,7 @@ class Tangible extends Model
     }
 
     public function detectable() {
-        return $this->belongsTo("App\\Models\\Detectable", "detectable", "id");
+        return $this->belongsTo("App\\Models\\Triggers\\Detectable", "detectable", "id");
     }
+
 }

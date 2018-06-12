@@ -66,11 +66,41 @@ class Workplace extends Model
 
         $workplace .= "</workplace>";
 
-        Header('Content-type: text/xml');
         $workplaceXML = new \SimpleXMLElement($workplace);
         //dd($workplaceXML);
-        print($workplaceXML->asXML());
+        return ($workplaceXML->asXML());
 
+    }
+
+    public function toJSONP()
+    {
+
+        $workplace = [
+            "id" => $this->id,
+            "name" => $this->name,
+            'tangibles' => [],
+            'configurables' => [],
+            'triggers' => [],
+            'sensors' => [],
+            'activities' => []
+        ];
+
+        foreach ($this->resources as $resource) {
+            $mainClass = app("App\\Models\\{$resource->type}");
+            $types = explode("\\", $resource->type);
+            $builder = $mainClass::where("id", $resource->id)->get();
+            if($builder->count() > 0){
+                $workplace[strtolower($types[0])][strtolower($types[1])][] = $mainClass->toJSONP($resource->id);
+            } else {
+                $workplace[strtolower($types[0])][strtolower($types[1])][] = [];
+            }
+        }
+
+        foreach(WorkplaceActivity::where("workplaces_id", $this->id)->get() as $workplaceActivity){
+            $workplace["activities"][] = $workplaceActivity->activity->toJSONP();
+        }
+
+        return $workplace;
     }
 
     public static function create($author, $input)

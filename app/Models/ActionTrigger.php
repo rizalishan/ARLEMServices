@@ -19,6 +19,11 @@ class ActionTrigger extends Model
         return $this->belongsTo("App\\Models\\ActionTriggerMode", "mode", "id");
     }
 
+    public function mode()
+    {
+        return $this->belongsTo("App\\Models\\ActionTriggerMode", "mode", "id");
+    }
+
     public function triggerpredicate()
     {
         return $this->hasOne("App\\Models\\Triggers\\Predicate", "id", "predicate");
@@ -32,6 +37,11 @@ class ActionTrigger extends Model
     public function triggerViewport()
     {
         return $this->hasOne("App\\Models\\Viewport", "id", "viewport");
+    }
+
+    public function operations()
+    {
+        return $this->hasMany("App\\Models\\ActionTriggerOperation", "actionTrigger", "id");
     }
 
     public function toXML()
@@ -57,6 +67,11 @@ class ActionTrigger extends Model
             $xml->addAttribute('viewport', $this->triggerViewport->name);
         }
         return str_replace('<?xml version="1.0"?>', '', $xml->asXML());
+    }
+
+    public function toJSONP($id)
+    {
+        return $this::where("id", $id)->with(["action", "triggerMode", "triggerpredicate", "triggerPoi", "triggerViewport"])->first()->toArray();
     }
 
     public static function create($action, $author, $data)

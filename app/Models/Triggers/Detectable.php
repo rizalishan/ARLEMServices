@@ -29,9 +29,16 @@ class Detectable extends Model
         $author = $this->author()->first();
         $xml = new \SimpleXMLElement('<detectable/>');
         $xml->addAttribute('id',$this->id);
-        $xml->addAttribute('sensor',$sensor->name);
+        if($sensor != null){
+            $xml->addAttribute('sensor',$sensor->name);
+        }
         $xml->addAttribute('type',$this->type);
         $xml->addAttribute('url',$this->url);
         return str_replace('<?xml version="1.0"?>','',$xml->asXML());
+    }
+
+    public function toJSONP($id)
+    {
+        return $this::where("id", $id)->with(["author", "sensor", "sensor.author", ])->first()->toArray();
     }
 }

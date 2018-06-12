@@ -19,6 +19,11 @@ class ActionTriggerOperation extends Model
         return $this->hasOne("App\\Models\\Triggers\\Predicate", "id", "predicate");
     }
 
+    public function predicate()
+    {
+        return $this->hasOne("App\\Models\\Triggers\\Predicate", "id", "predicate");
+    }
+
     public function triggerPoi()
     {
         return $this->hasOne("App\\Models\\Tangibles\\POI", "id", "poi");
@@ -28,6 +33,18 @@ class ActionTriggerOperation extends Model
     {
         return $this->hasOne("App\\Models\\Viewport", "id", "viewport");
     }
+
+    public function viewport()
+    {
+        return $this->hasOne("App\\Models\\Viewport", "id", "viewport");
+    }
+
+    public function sensor()
+    {
+        return $this->hasOne("App\\Models\\Sensor", "id", "sensor");
+    }
+
+
 
     public function toXML()
     {
@@ -52,6 +69,11 @@ class ActionTriggerOperation extends Model
             $xml->addAttribute('viewport', $this->triggerViewport->name);
         }
         return str_replace('<?xml version="1.0"?>', '', $xml->asXML());
+    }
+
+    public function toJSONP($id)
+    {
+        return $this::where("id", $id)->with(["triggerMode", "triggerpredicate", "triggerPoi", "triggerViewport"])->first()->toArray();
     }
 
     public static function create($trigger, $author, $data)

@@ -48,4 +48,9 @@ class App extends Model
         $xml->addAttribute('manifest',$this->manifest);
         return str_replace('<?xml version="1.0"?>','',$xml->asXML());
     }
+
+    public function toJSONP($id)
+    {
+        return $this::where("id", $id)->with(["type", "author"])->first()->toArray();
+    }
 }

@@ -57,6 +57,12 @@ class Action extends Model
         }
     }
 
+    public function toJSONP($id)
+    {
+        //"triggers", "triggers.triggerMode", "triggers.action", "triggers.action.author", "triggers.triggerpredicate", "triggers.triggerViewport",
+        return $this::where("id", $id)->with(["viewport", "author", "triggers", "triggers.mode", "triggers.operations", "triggers.operations.predicate", "triggers.operations.viewport", "triggers.operations.sensor", "triggers.operations.sensor.author"])->first()->toArray();
+    }
+
     public static function create($activity, $author, $data)
     {
         $objAction = new Action;

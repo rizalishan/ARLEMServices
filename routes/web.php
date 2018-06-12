@@ -67,8 +67,12 @@ Route::group(["middleware" => ["auth"]], function () {
 
 
 });
-Route::get("/workplace/generate/{id}", "WorkplaceController@getGenerate");
-Route::get("/activity/generate/{id}", "ActivityController@getGenerate");
+Route::get("/workplace/xml/{id}", "WorkplaceController@getGenerateXML");
+Route::get("/workplace/json/{id}", "WorkplaceController@getGenerateJSON");
+Route::get("/workplace/activities/json/{id}", "WorkplaceController@getGenerateActivityJSON");
+
+Route::get("/activity/xml/{id}", "ActivityController@getGenerateXML");
+Route::get("/activity/json/{id}", "ActivityController@getGenerateJSON");
 
 Route::options('/{any:.*}', function (){
     return response('');

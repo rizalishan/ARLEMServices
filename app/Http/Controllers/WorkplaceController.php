@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Entity;
 use App\Models\Workplace;
+use App\Models\WorkplaceActivity;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -55,27 +56,42 @@ class WorkplaceController extends Controller
         } catch (Exception $e) {
             $this->error(trans("unexpected_error"), 500);
         }
-
-        $workplaces = Workplace::findOrFail($id);
-        return $this->success($workplaces, 200);
     }
 
-    public function putEdit()
+    public function putEdit($id)
     {
         $workplaces = Workplace::findOrFail($id);
         return $this->success($workplaces, 200);
     }
 
-    public function deleteRemove()
+    public function deleteRemove($id)
     {
         $workplaces = Workplace::findOrFail($id)->delete();
         return $this->success("Successfully deleted the workplace.", 200);
     }
 
-    public function getGenerate($id)
+    public function getGenerateXML($id)
     {
-        Workplace::find($id)->toXML();
+        Header('Content-type: text/xml');
+        echo Workplace::find($id)->toXML();
     }
+
+    public function getGenerateJSON($id)
+    {
+        return response()->json(Workplace::find($id)->toJSONP());
+    }
+
+    public function getGenerateActivityJSON($id)
+    {
+        $activites = [];
+        foreach(WorkplaceActivity::where("workplaces_id", $id)->get() as $workplaceActivity){
+            $activites[] = $workplaceActivity->activity->toJSONP();
+        }
+
+        return response()->json($activites);
+    }
+
+
 
     public function getEnityList(Request $request)
     {

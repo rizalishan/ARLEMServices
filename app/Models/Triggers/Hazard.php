@@ -33,4 +33,9 @@ class Hazard extends Model
             return str_replace('<?xml version="1.0"?>', '', $xml->asXML());
         }
     }
+
+    public function toJSONP($id)
+    {
+        return $this::where("id", $id)->with(["author", "primitives.primitive", "primitives.primitive.author"])->first()->toArray();
+    }
 }

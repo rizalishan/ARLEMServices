@@ -22,7 +22,7 @@ class Person extends Model
 
     public function detectable()
     {
-        return $this->belongsTo("App\\Models\\Detectable", "detectable", "id");
+        return $this->belongsTo("App\\Models\\Triggers\\Detectable", "detectable", "id");
     }
 
     public static function create($author, $input)
@@ -51,5 +51,10 @@ class Person extends Model
         $xml->addAttribute('persona',$this->persona);
         $xml->addAttribute('detectable',$this->detectable);
         return str_replace('<?xml version="1.0"?>','',$xml->asXML());
+    }
+
+    public function toJSONP($id)
+    {
+        return $this::where("id", $id)->with(["detectable", "detectable.sensor", "detectable.sensor.author", "detectable.author", "author"])->first()->toArray();
     }
 }

@@ -67,6 +67,23 @@ class Activity extends Model
 
     }
 
+    public function toJSONP()
+    {
+
+        $acitivy = [
+            "id" => $this->id,
+            "name" => $this->name,
+            'language' => $this->language,
+            'start' => $this->start
+        ];
+
+        foreach ($this->actions as $action) {
+            $acitivy["actions"][] = $action->toJSONP($action->id);
+        }
+
+        return $acitivy;
+    }
+
     public static function create($user, $data)
     {
         $objActivity = new Activity;

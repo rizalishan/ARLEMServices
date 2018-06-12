@@ -53,9 +53,14 @@ class ActivityController extends Controller
         return $this->success("Successfully deleted the workplace.", 200);
     }
 
-    public function getGenerate($id)
+    public function getGenerateXML($id)
     {
         Activity::find($id)->toXML();
+    }
+
+    public function getGenerateJSON($id)
+    {
+        return response()->json(Activity::find($id)->toJSONP());
     }
 
     public function getActionSelectList()
