@@ -26,6 +26,7 @@ class Sensor extends Model
     {
         $objSensor = new Sensor;
 
+        $objSensor->id_name = $input['name'];
         $objSensor->name = $input['name'];
         $objSensor->uri = $input['uri'];
         $objSensor->username = $input['username'];
@@ -35,5 +36,10 @@ class Sensor extends Model
         $objSensor->save();
         return $objSensor;
 
+    }
+
+    public function toJSONP($id)
+    {
+        return $this::where("id", $id)->first()->toArray();
     }
 }

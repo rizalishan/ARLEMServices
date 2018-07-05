@@ -78,9 +78,21 @@ class Workplace extends Model
         $workplace = [
             "id" => $this->id,
             "name" => $this->name,
-            'tangibles' => [],
-            'configurables' => [],
-            'triggers' => [],
+            'tangibles' => [
+                "thing" => [],
+                "place" => [],
+                "person" => []
+            ],
+            'configurables' => [
+                "device" => [],
+                "app" => []
+            ],
+            'triggers' => [
+                "hazard" => [],
+                "detectable" => [],
+                "predicate" => [],
+                "warning" => []
+            ],
             'sensors' => [],
             'activities' => []
         ];
@@ -90,7 +102,11 @@ class Workplace extends Model
             $types = explode("\\", $resource->type);
             $builder = $mainClass::where("id", $resource->id)->get();
             if($builder->count() > 0){
-                $workplace[strtolower($types[0])][strtolower($types[1])][] = $mainClass->toJSONP($resource->id);
+                if(strtolower(isset($types[1]))){
+                    $workplace[strtolower($types[0])][strtolower($types[1])][] = $mainClass->toJSONP($resource->id);
+                } else{
+                    $workplace[strtolower($types[0])][] = $mainClass->toJSONP($resource->id);
+                }
             } else {
                 $workplace[strtolower($types[0])][strtolower($types[1])][] = [];
             }

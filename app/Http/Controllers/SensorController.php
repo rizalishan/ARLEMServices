@@ -34,6 +34,7 @@ class SensorController extends Controller
     {
         try {
             $this->validate($request, [
+                "id" => "required|unique:sensors,id_name",
                 "name" => "required",
                 "uri" => "required"
             ]);
