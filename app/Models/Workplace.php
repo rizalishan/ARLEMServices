@@ -33,33 +33,68 @@ class Workplace extends Model
         return $this->hasMany("App\\Models\\Resource", "workplace", "id");
     }
 
+    public function activities()
+    {
+        return $this->hasMany("App\\Models\\WorkplaceActivity", "workplaces_id", "id");
+    }
+
     public function toXML()
     {
-        $workplace = '<workplace id="'.$this->id.'" name="'.$this->name.'">';
+        $xml = new \SimpleXMLElement('<workplace/>');
+        $xml->addAttribute("id", $this->id);
+        $xml->addAttribute("name", $this->name);
 
         $items = [
-            'tangibles' => [],
-            'configurables' => [],
-            'triggers' => [],
-            'sensors' => []
+            'tangibles' => $xml->addChild('tangibles'),
+            'configurables' => $xml->addChild('configurables'),
+            'triggers' => $xml->addChild('triggers'),
+            'sensors' => $xml->addChild('sensors'),
+            'activities' => $xml->addChild('activities'),
         ];
+
+        $subItems = [
+            'apps' => $items['configurables']->addChild('apps'),
+            'devices' => $items['configurables']->addChild('devices'),
+
+            'places' => $items['tangibles']->addChild('places'),
+            'people' => $items['tangibles']->addChild('people'),
+            'things' => $items['tangibles']->addChild('things'),
+
+            'detectables' => $items['triggers']->addChild('detectables'),
+            'hazards' => $items['triggers']->addChild('hazards'),
+            'predicates' => $items['triggers']->addChild('predicate'),
+            'warnings' => $items['triggers']->addChild('warnings'),
+        ];
+
 
         foreach ($this->resources as $resource) {
             $mainClass = app("App\\Models\\{$resource->type}");
             $types = explode("\\", $resource->type);
-            $items[strtolower($types[0])][strtolower($types[1])][] = $mainClass::find($resource->id)->toXML();
+            if(strtolower(isset($types[1]))){
+                $mainClass::find($resource->id)->toXML($subItems[strtolower(str_plural($types[1]))]);
+            } else {
+                $mainClass::find($resource->id)->toXML($items[strtolower(str_plural($types[0]))]);
+            }
+        }
+
+        foreach ($this->activities as $activities) {
+            $activities->activity()->first()->toXML($items['activities']);
         }
 
         // tangibles, configurables
-        foreach ($items as $category => $subItems) {
+        /*foreach ($items as $category => $subItems) {
             $workplace .= "<$category>";
             // person, place
             foreach($subItems as $subcategory => $subsubitems) {
-                $workplace .= '<'.str_plural($subcategory).'>';
-                foreach($subsubitems as $item) {
-                    $workplace .= $item;
+                if(is_array($subsubitems)){
+                    $workplace .= '<'.str_plural($subcategory).'>';
+                    foreach($subsubitems as $item) {
+                        $workplace .= $item;
+                    }
+                    $workplace .= '</'.str_plural($subcategory).'>';
+                } else {
+                    $workplace .= $subsubitems;
                 }
-                $workplace .= '</'.str_plural($subcategory).'>';
             }
             $workplace .= "</$category>";
         }
@@ -67,9 +102,13 @@ class Workplace extends Model
         $workplace .= "</workplace>";
 
         $workplaceXML = new \SimpleXMLElement($workplace);
-        //dd($workplaceXML);
-        return ($workplaceXML->asXML());
+        //dd($workplaceXML);*/
 
+        foreach( $xml->xpath('/child::*//*[not(*) and not(text()[normalize-space()])]') as $emptyElement ) {
+            unset( $emptyElement[0] );
+        }
+
+        return $xml->asXML();
     }
 
     public function toJSONP()
@@ -105,7 +144,7 @@ class Workplace extends Model
                 if(strtolower(isset($types[1]))){
                     $workplace[strtolower($types[0])][strtolower($types[1])][] = $mainClass->toJSONP($resource->id);
                 } else{
-                    $workplace[strtolower($types[0])][] = $mainClass->toJSONP($resource->id);
+                    $workplace[str_plural(strtolower($types[0]))][] = $mainClass->toJSONP($resource->id);
                 }
             } else {
                 $workplace[strtolower($types[0])][strtolower($types[1])][] = [];

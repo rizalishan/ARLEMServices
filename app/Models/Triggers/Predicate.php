@@ -18,7 +18,7 @@ class Predicate extends Model
         return $this->hasMany("App\\Models\\Triggers\\PredicatePrimitive", "predicate", "id");
     }
 
-    public function toXML()
+    public function toXML($xml)
     {
         /*$xml = '';
         if ($this->primitives->count() > 0) {

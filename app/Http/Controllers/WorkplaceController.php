@@ -70,9 +70,11 @@ class WorkplaceController extends Controller
         return $this->success("Successfully deleted the workplace.", 200);
     }
 
-    public function getGenerateXML($id)
+    public function getGenerateXML(Request $r, $id)
     {
-        Header('Content-type: text/xml');
+        if($r->get("xml") != ""){
+            Header('Content-type: text/xml');
+        }
         echo Workplace::find($id)->toXML();
     }
 

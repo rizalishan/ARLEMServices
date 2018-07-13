@@ -57,16 +57,16 @@ class Thing extends Model
         return Thing::where("id",$objThing->id)->with("poi")->get()->first();
     }
 
-    public function toXML()
+    public function toXML($xml)
     {
-        $xml = new \SimpleXMLElement('<thing/>');
-        $xml->addAttribute('id', $this->id);
-        $xml->addAttribute('name', $this->name);
-        $xml->addAttribute('urn', $this->urn);
-        $xml->addAttribute('detectable', $this->detectable);
+        $ele = $xml->addChild('place');
+        $ele->addAttribute('id', $this->id);
+        $ele->addAttribute('name', $this->name);
+        $ele->addAttribute('urn', $this->urn);
+        $ele->addAttribute('detectable', $this->detectable);
 
         if ($this->poi->count() > 0) {
-            $pois = $xml->addChild('pois');
+            $pois = $ele->addChild('pois');
             foreach ($this->poi as $poi) {
                 $tmp = $pois->addChild('poi');
                 $tmp->addAttribute('id', $poi->id);
@@ -76,7 +76,8 @@ class Thing extends Model
             }
         }
 
-        return str_replace('<?xml version="1.0"?>','',$xml->asXML());
+        $this->detectable()->first()->toXML($ele);
+        $this->author()->first()->toXML($ele);
     }
 
     public function toJSONP($id)

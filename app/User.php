@@ -31,4 +31,14 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $hidden = [
         'password',
     ];
+
+    public function toXML($xml)
+    {
+
+        $ele = $xml->addChild('author');
+        $ele->addAttribute('id', $this->id);
+        $ele->addAttribute('name', $this->name);
+        $ele->addAttribute('email', $this->email);
+    }
+
 }

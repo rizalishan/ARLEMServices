@@ -18,20 +18,20 @@ class Warning extends Model
         return $this->hasMany("App\\Models\\Triggers\\WarningPrimitive", "warning", "id");
     }
 
-    public function toXML()
+    public function toXML($xml)
     {
-        $xml = '';
+        $ele = $xml->addChild('warnings');
+        $ele->addAttribute('id',$this->id);
         if ($this->primitives->count() > 0) {
             foreach ($this->primitives as $primitive) {
-                $xml .= $primitive->primitive()->first()->toXML();
+                $primitive->primitive()->first()->toXML($ele);
             }
         }
-        if ($xml != '') {
-            $xml = '<warnings>' . $xml . '</warnings>';
-            $xml = new \SimpleXMLElement($xml);
-            return str_replace('<?xml version="1.0"?>', '', $xml->asXML());
-        }
+        $this->author()->first()->toXML($ele);
+
     }
+
+
 
     public function toJSONP($id)
     {

@@ -23,18 +23,17 @@ class Detectable extends Model
         return $this->belongsTo("App\\Models\\Sensor", "sensor", "id");
     }
 
-    public function toXML()
+    public function toXML($xml)
     {
         $sensor = $this->sensor()->first();
-        $author = $this->author()->first();
-        $xml = new \SimpleXMLElement('<detectable/>');
-        $xml->addAttribute('id',$this->id);
+        $ele = $xml->addChild('detectable');
+        $ele->addAttribute('id',$this->id);
         if($sensor != null){
-            $xml->addAttribute('sensor',$sensor->name);
+            $sensor->toXML($ele);
         }
-        $xml->addAttribute('type',$this->type);
-        $xml->addAttribute('url',$this->url);
-        return str_replace('<?xml version="1.0"?>','',$xml->asXML());
+        $ele->addAttribute('type',$this->type);
+        $ele->addAttribute('url',$this->url);
+        $this->author()->first()->toXML($ele);
     }
 
     public function toJSONP($id)

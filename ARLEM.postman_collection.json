@@ -1,17 +1,20 @@
 {
+	"variables": [],
 	"info": {
-		"_postman_id": "0c2d6dd0-e12b-0745-7708-287ac827f172",
 		"name": "ARLEM",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"_postman_id": "d036392d-88d5-4097-bcf2-5de79eb9d821",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "Authentication",
-			"description": "",
+			"description": null,
 			"item": [
 				{
 					"name": "/signin",
 					"request": {
+						"url": "{{api}}/signin",
 						"method": "PATCH",
 						"header": [
 							{
@@ -23,15 +26,6 @@
 							"mode": "raw",
 							"raw": "{\"email\":\"rizalishan@gmail.com\",\"password\":\"123456\"}"
 						},
-						"url": {
-							"raw": "{{api}}/signin",
-							"host": [
-								"{{api}}"
-							],
-							"path": [
-								"signin"
-							]
-						},
 						"description": "Sign In user an return user data with updated token"
 					},
 					"response": []
@@ -39,6 +33,7 @@
 				{
 					"name": "/signup",
 					"request": {
+						"url": "{{api}}/signup",
 						"method": "POST",
 						"header": [
 							{
@@ -50,15 +45,6 @@
 							"mode": "raw",
 							"raw": "{\"name\":\"Rizwan Ali\",\"email\":\"rizalissdhsan@gmail.com\",\"password\":\"123456\"}"
 						},
-						"url": {
-							"raw": "{{api}}/signup",
-							"host": [
-								"{{api}}"
-							],
-							"path": [
-								"signup"
-							]
-						},
 						"description": "Sign In user an return user data with updated token"
 					},
 					"response": []
@@ -66,6 +52,7 @@
 				{
 					"name": "/forget",
 					"request": {
+						"url": "{{api}}/forget",
 						"method": "POST",
 						"header": [
 							{
@@ -77,21 +64,30 @@
 							"mode": "raw",
 							"raw": "{\"email\":\"rizalishan@gmail.com\"}"
 						},
-						"url": {
-							"raw": "{{api}}/forget",
-							"host": [
-								"{{api}}"
-							],
-							"path": [
-								"forget"
-							]
-						}
+						"description": null
 					},
 					"response": []
 				},
 				{
 					"name": "/change",
 					"request": {
+						"url": {
+							"raw": "{{api}}/change/:code",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"change",
+								":code"
+							],
+							"query": [],
+							"variable": [
+								{
+									"key": "code",
+									"value": "eyJpdiI6Ik5HU3pPUkpLZHI1cXIwMUJrZnU5a3c9PSIsInZhbHVlIjoic3RtdmxVQUNkOG9rUVhLeElLY2l1cVpENURoKytyYnBTeVpNdWpaXC9sSkk9IiwibWFjIjoiMWM0ODg1YmNhMTUwN2E1OTdiOTY2MGI5YTRkZGZjOTMwMjkxMGU4NzMzMGRkNjVhODlkYTQ4YzBjMDg3MTZmYiJ9"
+								}
+							]
+						},
 						"method": "PATCH",
 						"header": [
 							{
@@ -103,28 +99,14 @@
 							"mode": "raw",
 							"raw": "{\"password\":\"123456\",\"repassword\":\"123456\"}"
 						},
-						"url": {
-							"raw": "{{api}}/change/:code",
-							"host": [
-								"{{api}}"
-							],
-							"path": [
-								"change",
-								":code"
-							],
-							"variable": [
-								{
-									"key": "code",
-									"value": "eyJpdiI6Ik5HU3pPUkpLZHI1cXIwMUJrZnU5a3c9PSIsInZhbHVlIjoic3RtdmxVQUNkOG9rUVhLeElLY2l1cVpENURoKytyYnBTeVpNdWpaXC9sSkk9IiwibWFjIjoiMWM0ODg1YmNhMTUwN2E1OTdiOTY2MGI5YTRkZGZjOTMwMjkxMGU4NzMzMGRkNjVhODlkYTQ4YzBjMDg3MTZmYiJ9"
-								}
-							]
-						}
+						"description": null
 					},
 					"response": []
 				},
 				{
 					"name": "/activate",
 					"request": {
+						"url": "{{api}}/activate",
 						"method": "POST",
 						"header": [
 							{
@@ -136,15 +118,7 @@
 							"mode": "raw",
 							"raw": "{\"email\":\"rizalishan@gmail.com\",\"code\":\"eyJpdiI6Ik5HU3pPUkpLZHI1cXIwMUJrZnU5a3c9PSIsInZhbHVlIjoic3RtdmxVQUNkOG9rUVhLeElLY2l1cVpENURoKytyYnBTeVpNdWpaXC9sSkk9IiwibWFjIjoiMWM0ODg1YmNhMTUwN2E1OTdiOTY2MGI5YTRkZGZjOTMwMjkxMGU4NzMzMGRkNjVhODlkYTQ4YzBjMDg3MTZmYiJ9\"}"
 						},
-						"url": {
-							"raw": "{{api}}/activate",
-							"host": [
-								"{{api}}"
-							],
-							"path": [
-								"activate"
-							]
-						}
+						"description": null
 					},
 					"response": []
 				}
@@ -152,46 +126,28 @@
 		},
 		{
 			"name": "Workplaces",
-			"description": "",
+			"description": null,
 			"item": [
 				{
 					"name": "/workplaces",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "kvgzJZqqBH7uzWnC2BvzNdYbjIQ0gWfy56D",
-									"type": "string"
-								}
-							]
-						},
+						"url": "{{api}}/workplaces",
 						"method": "GET",
 						"header": [
 							{
 								"key": "Content-Type",
-								"value": "application/json"
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
 							}
 						],
 						"body": {
 							"mode": "raw",
 							"raw": ""
-						},
-						"url": {
-							"raw": "{{api}}/workplaces?include=author",
-							"host": [
-								"{{api}}"
-							],
-							"path": [
-								"workplaces"
-							],
-							"query": [
-								{
-									"key": "include",
-									"value": "author"
-								}
-							]
 						},
 						"description": "Sign In user an return user data with updated token"
 					},
@@ -200,27 +156,6 @@
 				{
 					"name": "/workplaces/:id",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "DZ31tdDeL7FaESARXdP69F4MgS9EIBalHZN",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [
-							{
-								"key": "Content-Type",
-								"value": "application/json"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
 						"url": {
 							"raw": "{{api}}/workplace/:id",
 							"host": [
@@ -230,6 +165,7 @@
 								"workplace",
 								":id"
 							],
+							"query": [],
 							"variable": [
 								{
 									"key": "id",
@@ -237,28 +173,51 @@
 								}
 							]
 						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
 						"description": "Sign In user an return user data with updated token"
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "Tangibles",
-			"description": "",
-			"item": [
+				},
 				{
-					"name": "/tangibles",
+					"name": "/entity",
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
+							"type": "bearerAuth",
+							"bearerAuth": {}
+						},
+						"url": {
+							"raw": "{{api}}/entity/?term=testdsds",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"entity",
+								""
+							],
+							"query": [
 								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
+									"key": "term",
+									"value": "testdsds",
+									"equals": true
 								}
-							]
+							],
+							"variable": []
 						},
 						"method": "GET",
 						"header": [
@@ -270,6 +229,109 @@
 						"body": {
 							"mode": "raw",
 							"raw": ""
+						},
+						"description": "Sign In user an return user data with updated token"
+					},
+					"response": []
+				},
+				{
+					"name": "/workplace",
+					"request": {
+						"url": "{{api}}/workplace",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"Test One\",\"category\":\"Category One\",\"items\":[{\"id\":6, \"type\": \"sensor\"}]}"
+						},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/entities",
+					"request": {
+						"url": "{{api}}/entities",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "Sign In user an return user data with updated token"
+					},
+					"response": []
+				},
+				{
+					"name": "/workplaces?select=true",
+					"request": {
+						"url": "{{api}}/workplace/select",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "Sign In user an return user data with updated token"
+					},
+					"response": []
+				},
+				{
+					"name": "/workplace/json/10",
+					"request": {
+						"url": "http://127.0.0.1:8080/workplace/json/10",
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tangibles",
+			"description": null,
+			"item": [
+				{
+					"name": "/tangibles",
+					"request": {
+						"auth": {
+							"type": "bearerAuth",
+							"bearerAuth": {}
 						},
 						"url": {
 							"raw": "{{api}}/tangibles?type=detectable",
@@ -284,8 +346,21 @@
 									"key": "type",
 									"value": "detectable"
 								}
-							]
-						}
+							],
+							"variable": []
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": null
 					},
 					"response": []
 				},
@@ -293,15 +368,10 @@
 					"name": "/trigger/person/create",
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "QlvCF7mEZ428Hcu9gyBKEIho2QmyiZDr4yC",
-									"type": "string"
-								}
-							]
+							"type": "bearerAuth",
+							"bearerAuth": {}
 						},
+						"url": "{{api}}/tangible/person/create",
 						"method": "POST",
 						"header": [
 							{
@@ -313,17 +383,7 @@
 							"mode": "raw",
 							"raw": "{\"name\":\"Rizwan Ali\",\"twitter\":\"rizalishan\",\"mbox\":\"rizalishan@gmail.com\",\"detectable\":\"2\",\"persona\":\"persona/rizalishan\"}"
 						},
-						"url": {
-							"raw": "{{api}}/tangible/person/create",
-							"host": [
-								"{{api}}"
-							],
-							"path": [
-								"tangible",
-								"person",
-								"create"
-							]
-						}
+						"description": null
 					},
 					"response": []
 				},
@@ -331,15 +391,10 @@
 					"name": "/trigger/place/create",
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "QlvCF7mEZ428Hcu9gyBKEIho2QmyiZDr4yC",
-									"type": "string"
-								}
-							]
+							"type": "bearerAuth",
+							"bearerAuth": {}
 						},
+						"url": "{{api}}/tangible/place/create",
 						"method": "POST",
 						"header": [
 							{
@@ -351,17 +406,7 @@
 							"mode": "raw",
 							"raw": "{\"id_name\":\"item\",\"name\":\"Item ok ka\",\"detectable\":\"2\"}"
 						},
-						"url": {
-							"raw": "{{api}}/tangible/place/create",
-							"host": [
-								"{{api}}"
-							],
-							"path": [
-								"tangible",
-								"place",
-								"create"
-							]
-						}
+						"description": null
 					},
 					"response": []
 				},
@@ -369,15 +414,10 @@
 					"name": "/trigger/thing/create",
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
+							"type": "bearerAuth",
+							"bearerAuth": {}
 						},
+						"url": "{{api}}/tangible/thing/create",
 						"method": "POST",
 						"header": [
 							{
@@ -389,17 +429,49 @@
 							"mode": "raw",
 							"raw": "{\"id_name\":\"item\",\"name\":\"Item ok ka\",\"urn\":\"http://127.0.0.0:8000/urn/thing\",\"detectable\":\"2\",\"poi\":[{\"name\":\"Left Siee\",\"x\":0.2,\"y\":0.2,\"z\":0.2,\"relativeTo\":2}]}"
 						},
+						"description": null
+					},
+					"response": []
+				},
+				{
+					"name": "/tangible/:type/select",
+					"request": {
 						"url": {
-							"raw": "{{api}}/tangible/thing/create",
+							"raw": "{{api}}/tangible/:type/select",
 							"host": [
 								"{{api}}"
 							],
 							"path": [
 								"tangible",
-								"thing",
-								"create"
+								":type",
+								"select"
+							],
+							"query": [],
+							"variable": [
+								{
+									"key": "type",
+									"value": "person"
+								}
 							]
-						}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "Sign In user an return user data with updated token"
 					},
 					"response": []
 				}
@@ -407,21 +479,16 @@
 		},
 		{
 			"name": "Configurables",
-			"description": "",
+			"description": null,
 			"item": [
 				{
 					"name": "/configurables",
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "FFa5hkn0wJiZ60dpoumblY7LSIdX1qETOrK",
-									"type": "string"
-								}
-							]
+							"type": "bearerAuth",
+							"bearerAuth": {}
 						},
+						"url": "{{api}}/configurables",
 						"method": "GET",
 						"header": [
 							{
@@ -433,15 +500,7 @@
 							"mode": "raw",
 							"raw": ""
 						},
-						"url": {
-							"raw": "{{api}}/configurables",
-							"host": [
-								"{{api}}"
-							],
-							"path": [
-								"configurables"
-							]
-						}
+						"description": null
 					},
 					"response": []
 				},
@@ -449,15 +508,10 @@
 					"name": "/configurable/app/create",
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
+							"type": "bearerAuth",
+							"bearerAuth": {}
 						},
+						"url": "{{api}}/configurable/app/create",
 						"method": "POST",
 						"header": [
 							{
@@ -469,17 +523,7 @@
 							"mode": "raw",
 							"raw": "{\"name\":\"Rizwan Ali\",\"manifest\":\"asdfa/rizalishan\"}"
 						},
-						"url": {
-							"raw": "{{api}}/configurable/app/create",
-							"host": [
-								"{{api}}"
-							],
-							"path": [
-								"configurable",
-								"app",
-								"create"
-							]
-						}
+						"description": null
 					},
 					"response": []
 				},
@@ -487,15 +531,10 @@
 					"name": "/configurable/device/create",
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
+							"type": "bearerAuth",
+							"bearerAuth": {}
 						},
+						"url": "{{api}}/configurable/device/create",
 						"method": "POST",
 						"header": [
 							{
@@ -507,17 +546,7 @@
 							"mode": "raw",
 							"raw": "{\"name\":\"Rizwan Ali\",\"manifest\":\"asdfa/rizalishan\"}"
 						},
-						"url": {
-							"raw": "{{api}}/configurable/device/create",
-							"host": [
-								"{{api}}"
-							],
-							"path": [
-								"configurable",
-								"device",
-								"create"
-							]
-						}
+						"description": null
 					},
 					"response": []
 				},
@@ -525,15 +554,10 @@
 					"name": "/configurable/device/types",
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
+							"type": "bearerAuth",
+							"bearerAuth": {}
 						},
+						"url": "{{api}}/configurable/device/types",
 						"method": "GET",
 						"header": [
 							{
@@ -545,17 +569,7 @@
 							"mode": "raw",
 							"raw": "{\"name\":\"Rizwan Ali\",\"type\":1}"
 						},
-						"url": {
-							"raw": "{{api}}/configurable/device/types",
-							"host": [
-								"{{api}}"
-							],
-							"path": [
-								"configurable",
-								"device",
-								"types"
-							]
-						}
+						"description": null
 					},
 					"response": []
 				}
@@ -563,21 +577,16 @@
 		},
 		{
 			"name": "Triggers",
-			"description": "",
+			"description": null,
 			"item": [
 				{
 					"name": "/triggers",
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{token}}",
-									"type": "string"
-								}
-							]
+							"type": "bearerAuth",
+							"bearerAuth": {}
 						},
+						"url": "{{api}}/triggers",
 						"method": "GET",
 						"header": [
 							{
@@ -589,15 +598,113 @@
 							"mode": "raw",
 							"raw": ""
 						},
+						"description": null
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Activities",
+			"description": "",
+			"item": [
+				{
+					"name": "/activities",
+					"request": {
+						"url": "{{api}}/activities",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/activity/:id",
+					"request": {
 						"url": {
-							"raw": "{{api}}/triggers",
+							"raw": "{{api}}/activity/:id",
 							"host": [
 								"{{api}}"
 							],
 							"path": [
-								"triggers"
+								"activity",
+								":id"
+							],
+							"query": [],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6"
+								}
 							]
-						}
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							}
+						],
+						"body": {},
+						"description": ""
+					},
+					"response": []
+				},
+				{
+					"name": "/action/select",
+					"request": {
+						"url": "{{api}}/action/select",
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"description": "Sign In user an return user data with updated token"
+					},
+					"response": []
+				},
+				{
+					"name": "/activity",
+					"request": {
+						"url": "{{api}}/activity",
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"description": ""
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"description": ""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"name\":\"test\",\"workplace\":\"2\",\"language\":\"De\",\"description\":\"testst\",\"actions\":[{\"id\":\"daf\",\"name\":\"asdf\",\"remove\":\"\",\"instructionTitle\":\"asdfasdf\",\"instructionDescription\":\"\",\"viewport\":\"2\",\"isValid\":true,\"triggers\":[{\"text\":\"Enter\",\"component\":\"action-enter-create\",\"operations\":[{\"action\":\"Y\",\"type\":\"Person\",\"entity\":\"5\",\"predicate\":\"Person\",\"poi\":\"Y\",\"options\":null,\"viewport\":null,\"option\":\"ste\"}],\"mode\":1,\"isValid\":true,\"remove\":\"1\"},{\"text\":\"Exit\",\"component\":\"action-exit-create\",\"operations\":[],\"mode\":2,\"isValid\":true},{\"mode\":\"5\",\"text\":\"Trigger\",\"component\":\"action-trigger-create\",\"operations\":[],\"isValid\":true,\"entity\":\"6\",\"options\":\"yest\"}]},{\"id\":\"OK VAORK\",\"name\":\"test\",\"remove\":\"\",\"instructionTitle\":\"test\",\"instructionDescription\":\"\",\"viewport\":\"3\",\"isValid\":true,\"triggers\":[{\"text\":\"Enter\",\"component\":\"action-enter-create\",\"operations\":[{\"action\":\"Y\",\"type\":\"Thing\",\"entity\":\"7\",\"predicate\":\"Person\",\"poi\":\"Y\",\"options\":null,\"viewport\":null,\"option\":\"te\"}],\"mode\":1,\"isValid\":true,\"remove\":\"\"},{\"text\":\"Exit\",\"component\":\"action-exit-create\",\"operations\":[],\"mode\":2,\"isValid\":true},{\"mode\":\"3\",\"text\":\"Trigger\",\"component\":\"action-trigger-create\",\"operations\":[],\"isValid\":true,\"entity\":\"2\",\"viewport\":\"2\"}]},{\"id\":\"third\",\"name\":\"est\",\"remove\":\"\",\"instructionTitle\":\"test\",\"instructionDescription\":\"\",\"viewport\":0,\"isValid\":true,\"triggers\":[{\"text\":\"Enter\",\"component\":\"action-enter-create\",\"operations\":[{\"action\":\"Y\",\"type\":\"Person\",\"entity\":\"5\",\"predicate\":\"Person\",\"poi\":\"Y\",\"options\":null,\"viewport\":null,\"option\":\"tes\"}],\"mode\":1,\"isValid\":true,\"remove\":\"1\"},{\"text\":\"Exit\",\"component\":\"action-exit-create\",\"operations\":[],\"mode\":2,\"isValid\":true}]}]}"
+						},
+						"description": ""
 					},
 					"response": []
 				}
@@ -606,47 +713,16 @@
 		{
 			"name": "/template/get",
 			"request": {
+				"url": "http://localhost:8080/template/get",
 				"method": "GET",
 				"header": [],
-				"body": {},
-				"url": {
-					"raw": "http://localhost:8080/template/get",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"template",
-						"get"
-					]
-				}
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": null
 			},
 			"response": []
 		}
-	],
-	"auth": {
-		"type": "basic",
-		"basic": [
-			{
-				"key": "password",
-				"value": "pwalice",
-				"type": "string"
-			},
-			{
-				"key": "username",
-				"value": "alice",
-				"type": "string"
-			},
-			{
-				"key": "saveHelperData",
-				"type": "any"
-			},
-			{
-				"key": "showPassword",
-				"value": false,
-				"type": "boolean"
-			}
-		]
-	}
+	]
 }

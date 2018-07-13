@@ -38,16 +38,16 @@ class Device extends Model
         return $objDevice;
     }
 
-    public function toXML()
+    public function toXML($xml)
     {
-        $type = $this->type()->first();
-        $author = $this->author()->first();
-        $xml = new \SimpleXMLElement('<device/>');
-        $xml->addAttribute('id',$this->id);
-        $xml->addAttribute('type',$type->name);
-        $xml->addAttribute('name',$this->name);
-        $xml->addAttribute('owner',$author->name);
-        return str_replace('<?xml version="1.0"?>','',$xml->asXML());
+
+        $ele = $xml->addChild('device');
+        $ele->addAttribute('id',$this->id);
+        $ele->addAttribute('name',$this->name);
+        $ele->addAttribute('manifest',$this->manifest);
+        $this->type()->first()->toXML($ele);
+        $this->author()->first()->toXML($ele);
+
     }
 
     public function toJSONP($id)

@@ -16,4 +16,11 @@ class WarningPrimitive extends Model
     public function primitive() {
         return $this->belongsTo("App\\Models\\Triggers\\Primitive", "primitive", "id");
     }
+
+    public function toXML($xml)
+    {
+        $typeElement = $xml->addChild('primitive');
+        $typeElement->addAttribute('id', $this->id);
+        $typeElement->addAttribute('name', $this->name);
+    }
 }

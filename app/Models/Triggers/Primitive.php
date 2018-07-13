@@ -23,23 +23,22 @@ class Primitive extends Model
         return $this->belongsTo("App\\Models\\Triggers\\PrimitiveType", "type", "id");
     }
 
-    public function toXML()
+    public function toXML($xml)
     {
-        $type = $this->type()->first();
-        $author = $this->author()->first();
-        $xml = new \SimpleXMLElement('<primitive/>');
-        $xml->addAttribute('id',$this->id);
-        $xml->addAttribute('type',$type->name);
+
+        $ele = $xml->addChild('primitive');
+        $ele->addAttribute('id',$this->id);
         if($this->size > 0){
-            $xml->addAttribute('size',$this->size);
+            $ele->addAttribute('size',$this->size);
         }
         if($this->url != '' && $this->url != null){
-            $xml->addAttribute('url',$this->url);
+            $ele->addAttribute('url',$this->url);
         }
         if($this->option != '' && $this->option != null) {
-            $xml->addAttribute('option', $this->option);
+            $ele->addAttribute('option', $this->option);
         }
-        return str_replace('<?xml version="1.0"?>','',$xml->asXML());
+        $this->type()->first()->toXML($ele);
+        $this->author()->first()->toXML($ele);
     }
 
 

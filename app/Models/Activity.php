@@ -38,33 +38,21 @@ class Activity extends Model
         return $this->hasMany("App\\Models\\Action", "activity", "id");
     }
 
-    public function instructions()
-    {
-        return $this->hasOne("App\\Models\\Instruction", "activity", "id");
-    }
-
-    public function toXML()
+    public function toXML($xml)
     {
 
-        $xml = '<activity id="' . $this->id . '" name="' . $this->name . '" language="' . $this->language . '" workplace="http://localhost:8080/workplace/generate/' . $this->workplace . '" start="' . $this->start . '">';
+        $ele = $xml->addChild('activity');
+        $ele->addAttribute('id',$this->id);
+        $ele->addAttribute('type',$this->name);
+        $ele->addAttribute('language',$this->language);
+        $ele->addAttribute('start',$this->start()->first()->id);
 
+        $eleActions = $ele->addChild('actions');
         $items = [];
 
         foreach ($this->actions as $action) {
-            $xml .= $action->toXML();
+            $action->toXML($eleActions);
         }
-
-        if ($this->instructions != null) {
-            $xml .= $this->instructions->toXML();
-        }
-
-        $xml .= "</activity>";
-
-        Header('Content-type: text/xml');
-        $xml = new \SimpleXMLElement($xml);
-        //dd($workplaceXML);
-        print($xml->asXML());
-
     }
 
     public function toJSONP()

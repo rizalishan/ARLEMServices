@@ -36,14 +36,15 @@ class Place extends Model
 
     }
 
-    public function toXML()
+    public function toXML($xml)
     {
-        $xml = new \SimpleXMLElement('<place/>');
-        $xml->addAttribute('id',$this->id);
-        $xml->addAttribute('name',$this->name);
-        $xml->addAttribute('type',$this->id_name);
-        $xml->addAttribute('detectable',$this->detectable);
-        return str_replace('<?xml version="1.0"?>','',$xml->asXML());
+        $ele = $xml->addChild('place');
+        $ele->addAttribute('id',$this->id);
+        $ele->addAttribute('name',$this->name);
+        $ele->addAttribute('type',$this->id_name);
+        $ele->addAttribute('detectable',$this->detectable);
+        $this->detectable()->first()->toXML($ele);
+        $this->author()->first()->toXML($ele);
     }
 
     public function toJSONP($id)

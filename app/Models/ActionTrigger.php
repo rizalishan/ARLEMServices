@@ -44,29 +44,25 @@ class ActionTrigger extends Model
         return $this->hasMany("App\\Models\\ActionTriggerOperation", "actionTrigger", "id");
     }
 
-    public function toXML()
+    public function toXML($xml)
     {
-        if ($this->triggerMode->name != 'enter' && $this->triggerMode->name != 'exit') {
-            $xml = new \SimpleXMLElement('<trigger/>');
-            $xml->addAttribute('mode', $this->triggerMode->name);
-        } else {
-            if ($this->is_activate == 'y') {
-                $xml = new \SimpleXMLElement('<activate/>');
-            } else {
-                $xml = new \SimpleXMLElement('<deactivate/>');
-            }
-        }
-        $xml->addAttribute('id', $this->trigger);
-        $xml->addAttribute('type', $this->type);
 
-        if ($this->type == 'tangible') {
-            $xml->addAttribute('predicate', $this->triggerpredicate->name);
-            $xml->addAttribute('poi', $this->triggerPoi->name);
-            $xml->addAttribute('option', $this->option);
+        $ele = null;
+        if ($this->triggerMode->name != 'enter' && $this->triggerMode->name != 'exit') {
+            $ele = $xml->addChild('trigger');
+            $this->triggerMode()->first()->toXML($ele);
         } else {
-            $xml->addAttribute('viewport', $this->triggerViewport->name);
+            $ele = $xml->addChild($this->triggerMode->name);
         }
-        return str_replace('<?xml version="1.0"?>', '', $xml->asXML());
+        $ele->addAttribute('id', $this->id);
+        $ele->addAttribute('type', $this->type);
+
+        $operationEle = $ele->addChild('operations');
+
+        foreach($this->operations as $operation) {
+            $operation->toXML($operationEle);
+        }
+
     }
 
     public function toJSONP($id)

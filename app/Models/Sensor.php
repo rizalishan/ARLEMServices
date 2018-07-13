@@ -38,8 +38,25 @@ class Sensor extends Model
 
     }
 
+    public function toXML($xml)
+    {
+        $ele = $xml->addChild('sensor');
+        $ele->addAttribute('id',$this->id);
+        $ele->addAttribute('id_name',$this->id_name);
+        $ele->addAttribute('name',$this->name);
+        $ele->addAttribute('uri',$this->uri);
+
+        if($this->username != '' && $this->username != null){
+            $ele->addAttribute('username',$this->username);
+        }
+        if($this->password != '' && $this->password != null) {
+            $ele->addAttribute('password', $this->password);
+        }
+        $this->author()->first()->toXML($ele);
+    }
+
     public function toJSONP($id)
     {
-        return $this::where("id", $id)->first()->toArray();
+        return $this::where("id", $id)->with(["author"])->first()->toArray();
     }
 }

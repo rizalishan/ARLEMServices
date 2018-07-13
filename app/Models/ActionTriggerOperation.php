@@ -46,29 +46,28 @@ class ActionTriggerOperation extends Model
 
 
 
-    public function toXML()
+    public function toXML($xml)
     {
-        if ($this->triggerMode->name != 'enter' && $this->triggerMode->name != 'exit') {
-            $xml = new \SimpleXMLElement('<trigger/>');
-            $xml->addAttribute('mode', $this->triggerMode->name);
-        } else {
-            if ($this->is_activate == 'y') {
-                $xml = new \SimpleXMLElement('<activate/>');
-            } else {
-                $xml = new \SimpleXMLElement('<deactivate/>');
-            }
-        }
-        $xml->addAttribute('id', $this->trigger);
-        $xml->addAttribute('type', $this->type);
+        $ele = $xml->addChild('operation');
 
-        if ($this->type == 'tangible') {
-            $xml->addAttribute('predicate', $this->triggerpredicate->name);
-            $xml->addAttribute('poi', $this->triggerPoi->name);
-            $xml->addAttribute('option', $this->option);
-        } else {
-            $xml->addAttribute('viewport', $this->triggerViewport->name);
+        $ele->addAttribute('id', $this->id);
+        $ele->addAttribute('type', $this->type);
+        $ele->addAttribute('is_active', $this->is_active);
+        $ele->addAttribute('options', $this->option);
+        $ele->addAttribute('poi', $this->poi);
+
+        if($this->triggerpredicate()->first() != null) {
+            $this->triggerpredicate()->first()->toXML($ele);
         }
-        return str_replace('<?xml version="1.0"?>', '', $xml->asXML());
+
+        if($this->triggerViewport()->first() != null) {
+            $this->triggerViewport()->first()->toXML($ele);
+        }
+
+
+        if($this->sensor()->first() != null) {
+            $this->sensor()->first()->toXML($ele);
+        }
     }
 
     public function toJSONP($id)

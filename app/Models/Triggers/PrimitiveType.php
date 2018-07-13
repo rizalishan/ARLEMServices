@@ -15,4 +15,10 @@ class PrimitiveType extends Model
      * @var array
      */
 
+    public function toXML($xml)
+    {
+        $typeElement = $xml->addChild('type');
+        $typeElement->addAttribute('id', $this->id);
+        $typeElement->addAttribute('name', $this->name);
+    }
 }

@@ -29,31 +29,21 @@ class Action extends Model
         return $this->hasMany("App\\Models\\ActionTrigger", "action", "id");
     }
 
-    public function toXML()
+    public function toXML($xml)
     {
-        try {
-
-            $xml = '<action id="' . $this->id . '" viewport="action" type="action">';
-
-            $items = [];
-            foreach ($this->triggers as $trigger) {
-                $items[$trigger->triggerMode->name][] = $trigger->toXML();
-            }
-
-            foreach ($items as $type => $subitems) {
-                $xml .= '<' . ($type == 'enter' || $type == 'exit' ? $type : 'triggers') . '>';
-                foreach ($subitems as $item) {
-                    $xml .= $item;
-                }
-                $xml .= '</' . ($type == 'enter' || $type == 'exit' ? $type : 'triggers') . '>';
-            }
-
-            $xml .= '</action>';
-
-            $xml = new \SimpleXMLElement($xml);
-            return str_replace('<?xml version="1.0"?>', '', $xml->asXML());
-        } catch (\Exception $e) {
-            echo $e;
+        $ele = $xml->addChild('action');
+        $ele->addAttribute('id',$this->id);
+        $ele->addAttribute('name',$this->name);
+        $ele->addAttribute('type','action');
+        $ele->addAttribute('instructionTitle',$this->instructionTitle);
+        $ele->addAttribute('instructionDescription',$this->instructionDescription);
+        if($this->viewport()->first() != null) {
+            $this->viewport()->first()->toXML($ele);
+        }
+        $this->author()->first()->toXML($ele);
+        $triggersEle = $ele->addChild('triggers');
+        foreach ($this->triggers as $trigger) {
+            $trigger->toXML($triggersEle);
         }
     }
 

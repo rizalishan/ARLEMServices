@@ -41,16 +41,17 @@ class Person extends Model
 
     }
 
-    public function toXML()
+    public function toXML($xml)
     {
-        $xml = new \SimpleXMLElement('<person/>');
-        $xml->addAttribute('id',$this->id);
-        $xml->addAttribute('name',$this->name);
-        $xml->addAttribute('twitter',$this->twitter);
-        $xml->addAttribute('mbox',$this->mbox);
-        $xml->addAttribute('persona',$this->persona);
-        $xml->addAttribute('detectable',$this->detectable);
-        return str_replace('<?xml version="1.0"?>','',$xml->asXML());
+        $ele = $xml->addChild('person');
+        $ele->addAttribute('id',$this->id);
+        $ele->addAttribute('name',$this->name);
+        $ele->addAttribute('twitter',$this->twitter);
+        $ele->addAttribute('mbox',$this->mbox);
+        $ele->addAttribute('persona',$this->persona);
+        $ele->addAttribute('detectable',$this->detectable);
+        $this->detectable()->first()->toXML($ele);
+        $this->author()->first()->toXML($ele);
     }
 
     public function toJSONP($id)

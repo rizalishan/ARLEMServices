@@ -19,9 +19,8 @@ class Instruction extends Model
 
     public function toXML()
     {
-        $xml = new \SimpleXMLElement('<instruction/>');
-        $xml->addChild('title',$this->title);
-        $xml->addChild('description','<![CDATA[' .$this->description. ']]>');
-        return str_replace('<?xml version="1.0"?>','',$xml->asXML());
+        $typeElement = $xml->addChild('instruction');
+        $typeElement->addAttribute('title', $this->title);
+        $typeElement->addAttribute('description', '<![CDATA[' .$this->description. ']]>');
     }
 }

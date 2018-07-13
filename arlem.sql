@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
--- https://www.phpmyadmin.net/
+-- version 4.4.15.9
+-- https://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: May 08, 2018 at 09:59 AM
--- Server version: 5.7.22
+-- Generation Time: Jul 06, 2018 at 04:06 PM
+-- Server version: 5.6.37
 -- PHP Version: 7.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -28,34 +26,50 @@ SET time_zone = "+00:00";
 -- Table structure for table `actions`
 --
 
-CREATE TABLE `actions` (
+CREATE TABLE IF NOT EXISTS `actions` (
   `id` int(11) NOT NULL,
+  `id_name` varchar(150) NOT NULL,
   `viewport` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
-  `device` int(11) NOT NULL,
-  `location` int(11) NOT NULL,
-  `instruction` int(11) NOT NULL,
+  `instructionTitle` varchar(150) DEFAULT NULL,
+  `instructionDescription` text,
   `author` int(11) NOT NULL,
   `activity` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `actions`
 --
 
-INSERT INTO `actions` (`id`, `viewport`, `name`, `device`, `location`, `instruction`, `author`, `activity`, `created_at`, `modified_at`) VALUES
-(1, 3, 'Kale Cummerata', 3, 7, 8, 1, 1, '1973-05-19 06:57:03', '2018-02-15 11:05:23'),
-(2, 1, 'Silas Hayes', 6, 2, 3, 1, 9, '1980-09-03 06:54:33', '1998-05-08 22:50:44'),
-(3, 2, 'Melisa Konopelski', 5, 7, 4, 2, 4, '1995-03-08 22:45:30', '1991-09-19 10:43:22'),
-(4, 1, 'Madelyn Leuschke MD', 1, 10, 9, 1, 7, '1985-12-25 23:34:26', '1991-10-29 18:02:43'),
-(5, 2, 'Miss Julia Grant III', 1, 0, 10, 1, 3, '1985-12-28 08:50:39', '2016-11-23 21:29:52'),
-(6, 3, 'Prof. Maryam Auer Jr.', 0, 3, 7, 1, 6, '2003-08-29 00:07:51', '1999-05-20 22:35:48'),
-(7, 1, 'Adolf O\'Kon', 3, 10, 5, 2, 5, '1990-05-12 12:38:35', '1985-08-28 18:10:22'),
-(8, 3, 'Lempi Schaden', 10, 0, 7, 2, 1, '1994-02-16 09:09:01', '1988-12-01 14:47:10'),
-(9, 2, 'Dr. Jordyn Carter V', 4, 1, 1, 2, 1, '1988-07-15 14:58:00', '2018-02-15 11:05:20'),
-(10, 2, 'Dr. David Roob', 6, 6, 6, 1, 5, '1979-11-22 20:15:57', '2008-08-06 15:25:42');
+INSERT INTO `actions` (`id`, `id_name`, `viewport`, `name`, `instructionTitle`, `instructionDescription`, `author`, `activity`, `created_at`, `modified_at`) VALUES
+(1, '', 3, 'Kale Cummerata', '8', '', 1, 1, '1973-05-19 06:57:03', '2018-02-15 11:05:23'),
+(2, '', 1, 'Silas Hayes', '3', '', 1, 9, '1980-09-03 06:54:33', '1998-05-08 22:50:44'),
+(3, '', 2, 'Melisa Konopelski', '4', '', 2, 4, '1995-03-08 22:45:30', '1991-09-19 10:43:22'),
+(4, '', 1, 'Madelyn Leuschke MD', '9', '', 1, 7, '1985-12-25 23:34:26', '1991-10-29 18:02:43'),
+(5, '', 2, 'Miss Julia Grant III', '10', '', 1, 3, '1985-12-28 08:50:39', '2016-11-23 21:29:52'),
+(6, '', 3, 'Prof. Maryam Auer Jr.', '7', '', 1, 6, '2003-08-29 00:07:51', '1999-05-20 22:35:48'),
+(7, '', 1, 'Adolf O''Kon', '5', '', 2, 5, '1990-05-12 12:38:35', '1985-08-28 18:10:22'),
+(8, '', 3, 'Lempi Schaden', '7', '', 2, 1, '1994-02-16 09:09:01', '1988-12-01 14:47:10'),
+(9, '', 2, 'Dr. Jordyn Carter V', '1', '', 2, 1, '1988-07-15 14:58:00', '2018-02-15 11:05:20'),
+(10, '', 2, 'Dr. David Roob', '6', '', 1, 5, '1979-11-22 20:15:57', '2008-08-06 15:25:42'),
+(11, 'daf', 2, 'asdf', 'asdfasdf', '', 3, 12, '2018-05-14 15:31:32', '2018-05-14 15:31:32'),
+(12, 'daf', 2, 'asdf', 'asdfasdf', '', 3, 13, '2018-05-14 15:56:10', '2018-05-14 15:56:10'),
+(13, 'daf', 2, 'asdf', 'asdfasdf', '', 3, 14, '2018-05-14 15:56:43', '2018-05-14 15:56:43'),
+(14, 'daf', 2, 'asdf', 'asdfasdf', '', 3, 15, '2018-05-14 15:57:12', '2018-05-14 15:57:12'),
+(15, 'daf', 2, 'asdf', 'asdfasdf', '', 3, 16, '2018-05-14 15:57:51', '2018-05-14 15:57:51'),
+(16, 'daf', 2, 'asdf', 'asdfasdf', '', 3, 17, '2018-05-14 15:58:26', '2018-05-14 15:58:26'),
+(17, 'daf', 2, 'asdf', 'asdfasdf', '', 3, 18, '2018-05-14 15:58:41', '2018-05-14 15:58:41'),
+(18, 'daf', 2, 'asdf', 'asdfasdf', '', 3, 19, '2018-05-14 15:59:47', '2018-05-14 15:59:47'),
+(19, 'OK VAORK', 3, 'test', 'test', '', 3, 19, '2018-05-14 15:59:47', '2018-05-14 15:59:47'),
+(20, 'third', 0, 'est', 'test', '', 3, 19, '2018-05-14 15:59:48', '2018-05-14 15:59:48'),
+(21, 'daf', 2, 'asdf', 'asdfasdf', '', 3, 20, '2018-05-14 16:00:13', '2018-05-14 16:00:13'),
+(22, 'OK VAORK', 3, 'test', 'test', '', 3, 20, '2018-05-14 16:00:13', '2018-05-14 16:00:13'),
+(23, 'third', 0, 'est', 'test', '', 3, 20, '2018-05-14 16:00:13', '2018-05-14 16:00:13'),
+(24, 'test', 1, 'test', 'test', '', 3, 21, '2018-05-14 16:13:34', '2018-05-14 16:13:34'),
+(25, 'action1', 1, 'Action 1', 'Action One', '', 3, 22, '2018-07-02 13:21:42', '2018-07-02 13:21:42'),
+(26, 'action2', 0, 'Action 2', 'Action 2', '', 3, 22, '2018-07-02 13:21:42', '2018-07-02 13:21:42');
 
 -- --------------------------------------------------------
 
@@ -63,34 +77,67 @@ INSERT INTO `actions` (`id`, `viewport`, `name`, `device`, `location`, `instruct
 -- Table structure for table `action_triggers`
 --
 
-CREATE TABLE `action_triggers` (
+CREATE TABLE IF NOT EXISTS `action_triggers` (
   `id` int(11) NOT NULL,
   `action` int(11) NOT NULL,
   `mode` tinyint(4) NOT NULL,
-  `trigger` int(11) NOT NULL,
-  `type` varchar(100) NOT NULL,
-  `predicate` int(11) NOT NULL,
-  `poi` int(11) NOT NULL,
-  `option` varchar(100) NOT NULL,
-  `viewport` int(11) NOT NULL,
-  `is_activate` char(1) NOT NULL DEFAULT 'n'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `remove` char(1) NOT NULL DEFAULT 'n',
+  `type` varchar(50) NOT NULL,
+  `value` varchar(50) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `action_triggers`
 --
 
-INSERT INTO `action_triggers` (`id`, `action`, `mode`, `trigger`, `type`, `predicate`, `poi`, `option`, `viewport`, `is_activate`) VALUES
-(1, 1, 1, 0, 'action', 5, 7, 'down', 1, 'n'),
-(2, 8, 1, 0, 'tangible', 9, 8, 'down', 2, 'n'),
-(3, 9, 3, 0, 'tangible', 7, 8, 'down', 1, 'n'),
-(4, 1, 3, 0, 'tangible', 10, 10, 'tangible', 2, 'n'),
-(5, 8, 2, 0, 'tangible', 1, 5, 'tangible', 2, 'n'),
-(6, 9, 2, 0, 'tangible', 5, 6, 'tangible', 2, 'n'),
-(7, 9, 1, 0, 'action', 5, 9, 'down', 2, 'n'),
-(8, 10, 1, 0, 'action', 9, 5, 'tangible', 2, 'n'),
-(9, 8, 3, 0, 'tangible', 1, 10, 'down', 2, 'n'),
-(10, 5, 2, 0, 'tangible', 4, 8, 'tangible', 1, 'n');
+INSERT INTO `action_triggers` (`id`, `action`, `mode`, `remove`, `type`, `value`, `created_at`, `modified_at`) VALUES
+(1, 1, 1, 'n', '', '', '2018-05-14 11:50:11', '0000-00-00 00:00:00'),
+(2, 8, 1, 'n', '', '', '2018-05-14 11:50:11', '0000-00-00 00:00:00'),
+(3, 9, 3, 'n', '', '', '2018-05-14 11:50:11', '0000-00-00 00:00:00'),
+(4, 1, 3, 'n', '', '', '2018-05-14 11:50:11', '0000-00-00 00:00:00'),
+(5, 8, 2, 'n', '', '', '2018-05-14 11:50:11', '0000-00-00 00:00:00'),
+(6, 9, 2, 'n', '', '', '2018-05-14 11:50:11', '0000-00-00 00:00:00'),
+(7, 9, 1, 'n', '', '', '2018-05-14 11:50:11', '0000-00-00 00:00:00'),
+(8, 10, 1, 'n', '', '', '2018-05-14 11:50:11', '0000-00-00 00:00:00'),
+(9, 8, 3, 'n', '', '', '2018-05-14 11:50:11', '0000-00-00 00:00:00'),
+(10, 5, 2, 'n', '', '', '2018-05-14 11:50:11', '0000-00-00 00:00:00'),
+(11, 12, 1, 'y', '', '', '2018-05-14 15:56:10', '2018-05-14 15:56:10'),
+(12, 13, 1, 'y', '', '', '2018-05-14 15:56:43', '2018-05-14 15:56:43'),
+(13, 14, 1, 'y', '', '', '2018-05-14 15:57:12', '2018-05-14 15:57:12'),
+(14, 15, 1, 'y', '', '', '2018-05-14 15:57:51', '2018-05-14 15:57:51'),
+(15, 15, 2, 'y', '', '', '2018-05-14 15:57:51', '2018-05-14 15:57:51'),
+(16, 15, 5, 'y', '', '', '2018-05-14 15:57:51', '2018-05-14 15:57:51'),
+(17, 16, 1, 'y', '', '', '2018-05-14 15:58:26', '2018-05-14 15:58:26'),
+(18, 16, 2, 'y', '', '', '2018-05-14 15:58:26', '2018-05-14 15:58:26'),
+(19, 16, 5, 'y', '', '', '2018-05-14 15:58:26', '2018-05-14 15:58:26'),
+(20, 17, 1, 'y', '', '', '2018-05-14 15:58:41', '2018-05-14 15:58:41'),
+(21, 17, 2, 'y', '', '', '2018-05-14 15:58:41', '2018-05-14 15:58:41'),
+(22, 17, 5, 'y', '', '', '2018-05-14 15:58:41', '2018-05-14 15:58:41'),
+(23, 18, 1, 'y', '', '', '2018-05-14 15:59:47', '2018-05-14 15:59:47'),
+(24, 18, 2, 'y', '', '', '2018-05-14 15:59:47', '2018-05-14 15:59:47'),
+(25, 18, 5, 'y', '', '', '2018-05-14 15:59:47', '2018-05-14 15:59:47'),
+(26, 19, 1, 'n', '', '', '2018-05-14 15:59:48', '2018-05-14 15:59:48'),
+(27, 19, 2, 'y', '', '', '2018-05-14 15:59:48', '2018-05-14 15:59:48'),
+(28, 19, 3, 'y', '', '', '2018-05-14 15:59:48', '2018-05-14 15:59:48'),
+(29, 20, 1, 'y', '', '', '2018-05-14 15:59:48', '2018-05-14 15:59:48'),
+(30, 20, 2, 'y', '', '', '2018-05-14 15:59:48', '2018-05-14 15:59:48'),
+(31, 21, 1, 'y', '', '', '2018-05-14 16:00:13', '2018-05-14 16:00:13'),
+(32, 21, 2, 'y', '', '', '2018-05-14 16:00:13', '2018-05-14 16:00:13'),
+(33, 21, 5, 'y', '', '', '2018-05-14 16:00:13', '2018-05-14 16:00:13'),
+(34, 22, 1, 'n', '', '', '2018-05-14 16:00:13', '2018-05-14 16:00:13'),
+(35, 22, 2, 'y', '', '', '2018-05-14 16:00:13', '2018-05-14 16:00:13'),
+(36, 22, 3, 'y', '', '', '2018-05-14 16:00:13', '2018-05-14 16:00:13'),
+(37, 23, 1, 'y', '', '', '2018-05-14 16:00:13', '2018-05-14 16:00:13'),
+(38, 23, 2, 'y', '', '', '2018-05-14 16:00:13', '2018-05-14 16:00:13'),
+(39, 24, 1, 'y', '', '', '2018-05-14 16:13:34', '2018-05-14 16:13:34'),
+(40, 24, 2, 'y', '', '', '2018-05-14 16:13:34', '2018-05-14 16:13:34'),
+(41, 25, 1, 'y', '', '', '2018-07-02 13:21:42', '2018-07-02 13:21:42'),
+(42, 25, 2, 'y', '', '', '2018-07-02 13:21:42', '2018-07-02 13:21:42'),
+(43, 25, 4, 'y', 'XOR', '0', '2018-07-02 13:21:42', '2018-07-02 13:40:14'),
+(44, 26, 1, 'y', '', '', '2018-07-02 13:21:42', '2018-07-02 13:21:42'),
+(45, 26, 2, 'y', '', '', '2018-07-02 13:21:42', '2018-07-02 13:21:42');
 
 -- --------------------------------------------------------
 
@@ -98,10 +145,10 @@ INSERT INTO `action_triggers` (`id`, `action`, `mode`, `trigger`, `type`, `predi
 -- Table structure for table `action_trigger_modes`
 --
 
-CREATE TABLE `action_trigger_modes` (
+CREATE TABLE IF NOT EXISTS `action_trigger_modes` (
   `id` tinyint(4) NOT NULL,
   `name` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `action_trigger_modes`
@@ -110,7 +157,52 @@ CREATE TABLE `action_trigger_modes` (
 INSERT INTO `action_trigger_modes` (`id`, `name`) VALUES
 (1, 'enter'),
 (2, 'exit'),
-(3, 'click');
+(3, 'click'),
+(4, 'detect'),
+(5, 'sensor');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `action_trigger_operations`
+--
+
+CREATE TABLE IF NOT EXISTS `action_trigger_operations` (
+  `id` int(11) NOT NULL,
+  `actionTrigger` int(11) NOT NULL,
+  `is_active` char(1) NOT NULL DEFAULT 'y',
+  `entityType` varchar(45) NOT NULL,
+  `entityId` int(11) NOT NULL,
+  `predicate` tinyint(4) DEFAULT NULL,
+  `poi` varchar(45) DEFAULT NULL,
+  `options` text,
+  `viewport` int(11) DEFAULT NULL,
+  `sensor` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `action_trigger_operations`
+--
+
+INSERT INTO `action_trigger_operations` (`id`, `actionTrigger`, `is_active`, `entityType`, `entityId`, `predicate`, `poi`, `options`, `viewport`, `sensor`, `created_at`, `modified_at`) VALUES
+(1, 13, 'Y', 'Person', 5, 0, 'Y', NULL, NULL, 6, '2018-05-14 15:57:12', '2018-06-12 18:13:34'),
+(2, 14, 'Y', 'Person', 5, 0, 'Y', NULL, NULL, 6, '2018-05-14 15:57:51', '2018-06-12 18:13:34'),
+(3, 17, 'y', 'Person', 5, 0, 'Y', NULL, NULL, 6, '2018-05-14 15:58:26', '2018-06-12 18:13:34'),
+(4, 20, 'y', 'Person', 5, 0, 'Y', NULL, NULL, 6, '2018-05-14 15:58:41', '2018-06-12 18:13:34'),
+(5, 23, 'y', 'Person', 5, 0, 'Y', '', 0, 6, '2018-05-14 15:59:47', '2018-06-12 18:13:34'),
+(6, 25, 'n', '', 0, 0, '', 'yest', 0, 6, '2018-05-14 15:59:47', '2018-06-12 18:13:34'),
+(7, 26, 'y', 'Thing', 7, 0, 'Y', '', 0, 6, '2018-05-14 15:59:48', '2018-06-12 18:13:34'),
+(8, 28, 'n', '', 0, 0, '', '', 2, 6, '2018-05-14 15:59:48', '2018-06-12 18:13:34'),
+(9, 29, 'y', 'Person', 5, 0, 'Y', '', 0, 6, '2018-05-14 15:59:48', '2018-06-12 18:13:34'),
+(10, 31, 'y', 'Person', 5, 0, 'Y', '', 0, 6, '2018-05-14 16:00:13', '2018-06-12 18:13:34'),
+(11, 33, 'n', '', 0, 0, '', 'yest', 0, 6, '2018-05-14 16:00:13', '2018-06-12 18:13:34'),
+(12, 34, 'y', 'Thing', 7, 0, 'Y', '', 0, 6, '2018-05-14 16:00:13', '2018-06-12 18:13:34'),
+(13, 36, 'n', '', 0, 0, '', '', 2, 6, '2018-05-14 16:00:13', '2018-06-12 18:13:34'),
+(14, 37, 'y', 'Person', 5, 0, 'Y', '', 0, 6, '2018-05-14 16:00:13', '2018-06-12 18:13:34'),
+(15, 39, 'y', 'person', 5, 0, 'Y', '', 0, 6, '2018-05-14 16:13:34', '2018-06-12 18:13:34'),
+(16, 43, 'n', 'Action', 26, 0, '', '0', 0, 0, '2018-07-02 13:21:42', '2018-07-02 13:27:19');
 
 -- --------------------------------------------------------
 
@@ -118,7 +210,7 @@ INSERT INTO `action_trigger_modes` (`id`, `name`) VALUES
 -- Table structure for table `activities`
 --
 
-CREATE TABLE `activities` (
+CREATE TABLE IF NOT EXISTS `activities` (
   `id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
   `description` text NOT NULL,
@@ -128,7 +220,7 @@ CREATE TABLE `activities` (
   `author` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `activities`
@@ -144,7 +236,12 @@ INSERT INTO `activities` (`id`, `name`, `description`, `language`, `workplace`, 
 (7, 'Dr. Aletha Schumm III', 'Ut rerum iusto placeat id nam perferendis sit non. Provident labore voluptatum officia assumenda aut minima qui. Voluptates sed atque praesentium dolorem voluptatum sit.', 'en', 2, 2, 2, '1973-03-05 14:14:29', '1983-09-07 22:04:47'),
 (8, 'Brayan Carroll II', 'Veniam earum vitae inventore fugiat at. Fugit architecto eum quisquam. Odit sapiente inventore assumenda et rerum doloribus iusto. Excepturi esse fuga repellat odio.', 'en', 4, 6, 2, '1989-03-20 09:47:14', '1985-08-27 02:25:08'),
 (9, 'Boris McLaughlin', 'Quia nemo numquam architecto dolor nostrum. Officia vel aspernatur odio est. Voluptate id est doloribus et molestias illo dignissimos. Voluptatem ab aut repellat.', 'en', 10, 8, 2, '1975-05-05 02:24:46', '1991-04-17 00:37:55'),
-(10, 'Luciano Walter', 'Esse voluptate sequi maiores quisquam voluptas aliquid. Eum vitae aut quae et. Et sed provident unde excepturi minima rerum.', 'en', 10, 9, 1, '2005-07-17 02:05:40', '1978-06-12 15:29:45');
+(10, 'Luciano Walter', 'Esse voluptate sequi maiores quisquam voluptas aliquid. Eum vitae aut quae et. Et sed provident unde excepturi minima rerum.', 'en', 10, 9, 1, '2005-07-17 02:05:40', '1978-06-12 15:29:45'),
+(18, 'test', 'testst', 'De', 2, 0, 3, '2018-05-14 15:58:41', '2018-05-14 15:58:41'),
+(19, 'test', 'testst', 'De', 2, 0, 3, '2018-05-14 15:59:47', '2018-05-14 15:59:47'),
+(20, 'test', 'testst', 'De', 2, 21, 3, '2018-05-14 16:00:13', '2018-05-14 16:00:13'),
+(21, 'test', 'test', 'De', 2, 24, 3, '2018-05-14 16:13:34', '2018-05-14 16:13:34'),
+(22, 'XOR Test', 'Testing xor operation', 'en', 16, 25, 3, '2018-07-02 13:21:42', '2018-07-02 13:22:36');
 
 -- --------------------------------------------------------
 
@@ -152,7 +249,7 @@ INSERT INTO `activities` (`id`, `name`, `description`, `language`, `workplace`, 
 -- Table structure for table `apps`
 --
 
-CREATE TABLE `apps` (
+CREATE TABLE IF NOT EXISTS `apps` (
   `id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `manifest` varchar(100) DEFAULT NULL,
@@ -160,7 +257,7 @@ CREATE TABLE `apps` (
   `type` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `apps`
@@ -184,10 +281,10 @@ INSERT INTO `apps` (`id`, `name`, `manifest`, `author`, `type`, `created_at`, `m
 -- Table structure for table `app_types`
 --
 
-CREATE TABLE `app_types` (
+CREATE TABLE IF NOT EXISTS `app_types` (
   `id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `app_types`
@@ -204,14 +301,14 @@ INSERT INTO `app_types` (`id`, `name`) VALUES
 -- Table structure for table `authors`
 --
 
-CREATE TABLE `authors` (
+CREATE TABLE IF NOT EXISTS `authors` (
   `id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `email` varchar(100) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
   `api_token` varchar(100) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `authors`
@@ -220,16 +317,15 @@ CREATE TABLE `authors` (
 INSERT INTO `authors` (`id`, `name`, `email`, `password`, `api_token`, `created_at`) VALUES
 (1, 'Eileen Parker', 'farrell.davon@yahoo.com', '$2y$10$IhOlDoVyTIkPOFxzmIOrO.xaHUFbQ8ilh2hgFEJ8Pct8bbxju5PYu', '', '1974-05-16 09:14:03'),
 (2, 'Angel Stracke', 'fay.shanon@hotmail.com', '$2y$10$g1BN4sOb/aezVNt8JzZV6eaCbVgGfK0Ulh94oWalO1yWD6A5M0foK', '', '1985-05-16 07:17:31'),
-(3, 'Rizwan', 'rizalishan@gmail.com', '$2y$10$ydt3nJ142fwcTtpfo6Gv8ePlsnPj8setzT5XShaBhwzuIel/vxzde', '7N0HLclekZKsoaQTRc09PcKJQu9k1UZAfph', '2018-02-15 15:43:41'),
+(3, 'Rizwan', 'rizalishan@gmail.com', '$2y$10$ydt3nJ142fwcTtpfo6Gv8ePlsnPj8setzT5XShaBhwzuIel/vxzde', 'bBtdm6f3dAxqR9tALGCI85wpQszUQhNmoOp', '2018-07-02 12:53:45'),
 (4, 'Rizwnan', 'rizalishan01@gmail.com', '$2y$10$TZ8bh4e8R3M5NEPqB7gH8unmhtJBj.m.B4Yht3g0dSZ6xL53VG4c.', '', '2018-02-15 10:36:09');
 
 -- --------------------------------------------------------
 
 --
 -- Stand-in structure for view `configurables`
--- (See below for the actual view)
 --
-CREATE TABLE `configurables` (
+CREATE TABLE IF NOT EXISTS `configurables` (
 `id` int(11)
 ,`name` varchar(100)
 ,`category` varchar(6)
@@ -244,7 +340,7 @@ CREATE TABLE `configurables` (
 -- Table structure for table `constraints`
 --
 
-CREATE TABLE `constraints` (
+CREATE TABLE IF NOT EXISTS `constraints` (
   `id` int(11) NOT NULL,
   `operation` int(11) DEFAULT NULL,
   `condition` text,
@@ -259,7 +355,7 @@ CREATE TABLE `constraints` (
 -- Table structure for table `detectables`
 --
 
-CREATE TABLE `detectables` (
+CREATE TABLE IF NOT EXISTS `detectables` (
   `id` int(11) NOT NULL,
   `sensor` int(11) NOT NULL,
   `type` varchar(50) NOT NULL,
@@ -268,23 +364,23 @@ CREATE TABLE `detectables` (
   `author` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `detectables`
 --
 
 INSERT INTO `detectables` (`id`, `sensor`, `type`, `url`, `message_id`, `author`, `created_at`, `modified_at`) VALUES
-(1, 5, 'marker', 'http://this.is.me/markers/6.asset', 9, 2, '1982-06-10 08:45:07', '2008-05-17 10:39:56'),
-(2, 2, 'marker', 'http://this.is.me/markers/7.asset', 7, 2, '1971-02-14 14:26:14', '2006-03-14 08:24:08'),
-(3, 4, 'marker', 'http://this.is.me/markers/1.asset', 10, 2, '1987-08-29 02:33:12', '2017-06-04 19:36:15'),
-(4, 4, 'marker', 'http://this.is.me/markers/7.asset', 2, 1, '2007-04-19 06:29:20', '2008-06-14 05:06:45'),
-(5, 5, 'marker', 'http://this.is.me/markers/1.asset', 7, 1, '2011-09-03 13:49:44', '2002-09-30 05:43:08'),
-(6, 5, 'marker', 'http://this.is.me/markers/6.asset', 10, 1, '2014-10-16 12:00:00', '2009-03-05 22:01:29'),
-(7, 1, 'marker', 'http://this.is.me/markers/3.asset', 5, 2, '1971-07-10 15:43:47', '1974-11-25 03:00:43'),
-(8, 2, 'marker', 'http://this.is.me/markers/2.asset', 2, 2, '2018-01-27 23:09:06', '1994-02-24 15:50:03'),
-(9, 3, 'marker', 'http://this.is.me/markers/1.asset', 9, 1, '1996-06-09 04:29:03', '2011-08-07 14:56:15'),
-(10, 2, 'marker', 'http://this.is.me/markers/5.asset', 7, 2, '2011-01-08 09:49:15', '2005-06-15 18:47:21');
+(1, 6, 'marker', 'http://this.is.me/markers/6.asset', 9, 2, '1982-06-10 08:45:07', '2018-06-12 16:18:26'),
+(2, 6, 'marker', 'http://this.is.me/markers/7.asset', 7, 2, '1971-02-14 14:26:14', '2018-06-12 16:18:38'),
+(3, 6, 'marker', 'http://this.is.me/markers/1.asset', 10, 2, '1987-08-29 02:33:12', '2018-06-12 16:18:38'),
+(4, 6, 'marker', 'http://this.is.me/markers/7.asset', 2, 1, '2007-04-19 06:29:20', '2018-06-12 16:18:38'),
+(5, 6, 'marker', 'http://this.is.me/markers/1.asset', 7, 1, '2011-09-03 13:49:44', '2018-06-12 16:18:38'),
+(6, 6, 'marker', 'http://this.is.me/markers/6.asset', 10, 1, '2014-10-16 12:00:00', '2018-06-12 16:18:38'),
+(7, 6, 'marker', 'http://this.is.me/markers/3.asset', 5, 2, '1971-07-10 15:43:47', '2018-06-12 16:18:38'),
+(8, 6, 'marker', 'http://this.is.me/markers/2.asset', 2, 2, '2018-01-27 23:09:06', '2018-06-12 16:18:38'),
+(9, 6, 'marker', 'http://this.is.me/markers/1.asset', 9, 1, '1996-06-09 04:29:03', '2018-06-12 16:18:38'),
+(10, 6, 'marker', 'http://this.is.me/markers/5.asset', 7, 2, '2011-01-08 09:49:15', '2018-06-12 16:18:38');
 
 -- --------------------------------------------------------
 
@@ -292,22 +388,22 @@ INSERT INTO `detectables` (`id`, `sensor`, `type`, `url`, `message_id`, `author`
 -- Table structure for table `devices`
 --
 
-CREATE TABLE `devices` (
+CREATE TABLE IF NOT EXISTS `devices` (
   `id` int(11) NOT NULL,
   `type` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
   `author` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `devices`
 --
 
 INSERT INTO `devices` (`id`, `type`, `name`, `author`, `created_at`, `modified_at`) VALUES
-(1, 2, 'Fridolin\'s iPad', 2, '2010-02-12 18:43:53', '2018-02-15 10:51:00'),
-(2, 5, 'Fridolin\'s Smart Glasses', 1, '2003-05-26 03:50:06', '2018-02-15 10:51:37'),
+(1, 2, 'Fridolin''s iPad', 2, '2010-02-12 18:43:53', '2018-02-15 10:51:00'),
+(2, 5, 'Fridolin''s Smart Glasses', 1, '2003-05-26 03:50:06', '2018-02-15 10:51:37'),
 (3, 4, 'est', 1, '1976-04-20 08:19:20', '1986-03-12 22:19:18'),
 (4, 3, 'inventore', 2, '1981-03-10 20:38:19', '2007-01-06 11:21:11'),
 (5, 1, 'ipsa', 2, '2017-02-16 16:32:52', '1980-11-05 13:56:13'),
@@ -323,10 +419,10 @@ INSERT INTO `devices` (`id`, `type`, `name`, `author`, `created_at`, `modified_a
 -- Table structure for table `device_types`
 --
 
-CREATE TABLE `device_types` (
+CREATE TABLE IF NOT EXISTS `device_types` (
   `id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `device_types`
@@ -342,10 +438,21 @@ INSERT INTO `device_types` (`id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `entities`
+--
+CREATE TABLE IF NOT EXISTS `entities` (
+`id` int(11)
+,`name` varchar(100)
+,`type` varchar(100)
+);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `external`
 --
 
-CREATE TABLE `external` (
+CREATE TABLE IF NOT EXISTS `external` (
   `id` int(11) NOT NULL,
   `operation` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -356,13 +463,13 @@ CREATE TABLE `external` (
 -- Table structure for table `hazards`
 --
 
-CREATE TABLE `hazards` (
+CREATE TABLE IF NOT EXISTS `hazards` (
   `id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `author` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `hazards`
@@ -386,7 +493,7 @@ INSERT INTO `hazards` (`id`, `name`, `author`, `created_at`, `modified_at`) VALU
 -- Table structure for table `hazard_primitives`
 --
 
-CREATE TABLE `hazard_primitives` (
+CREATE TABLE IF NOT EXISTS `hazard_primitives` (
   `hazard` int(11) DEFAULT NULL,
   `primitive` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -413,21 +520,21 @@ INSERT INTO `hazard_primitives` (`hazard`, `primitive`) VALUES
 -- Table structure for table `instructions`
 --
 
-CREATE TABLE `instructions` (
+CREATE TABLE IF NOT EXISTS `instructions` (
   `id` int(11) NOT NULL,
   `title` varchar(45) NOT NULL,
   `description` text NOT NULL,
   `author` int(11) NOT NULL,
-  `activity` int(11) NOT NULL,
+  `action` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `instructions`
 --
 
-INSERT INTO `instructions` (`id`, `title`, `description`, `author`, `activity`, `created_at`, `modified_at`) VALUES
+INSERT INTO `instructions` (`id`, `title`, `description`, `author`, `action`, `created_at`, `modified_at`) VALUES
 (1, 'Mollie Nienow', 'Nulla harum molestiae quo non tempore deleniti. Est reiciendis molestiae eum. Blanditiis officiis odio ab minima. Dolores odio possimus rerum aliquid.', 2, 6, '1970-01-06 20:20:36', '2003-01-18 14:41:56'),
 (2, 'Ms. Alberta Kihn', 'Asperiores illum sequi porro magni et aut consequatur minus. Blanditiis iure ut asperiores adipisci error. Et est velit magnam.', 2, 9, '1981-05-28 10:06:24', '1988-10-03 09:28:31'),
 (3, 'Deron Hills', 'Aspernatur laudantium omnis iusto perspiciatis dolorum. Nobis accusamus corporis accusamus est. Illo est voluptas doloremque adipisci.', 2, 5, '2017-04-28 06:38:56', '2013-06-02 13:24:28'),
@@ -445,7 +552,7 @@ INSERT INTO `instructions` (`id`, `title`, `description`, `author`, `activity`, 
 -- Table structure for table `locations`
 --
 
-CREATE TABLE `locations` (
+CREATE TABLE IF NOT EXISTS `locations` (
   `id` int(11) NOT NULL,
   `position` text NOT NULL,
   `author` int(11) NOT NULL,
@@ -459,7 +566,7 @@ CREATE TABLE `locations` (
 -- Table structure for table `messages`
 --
 
-CREATE TABLE `messages` (
+CREATE TABLE IF NOT EXISTS `messages` (
   `id` int(11) NOT NULL COMMENT '	',
   `targetEntity` int(11) DEFAULT NULL,
   `entityId` int(11) DEFAULT NULL,
@@ -472,20 +579,25 @@ CREATE TABLE `messages` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `operations`
+-- Table structure for table `modules`
 --
 
-CREATE TABLE `operations` (
+CREATE TABLE IF NOT EXISTS `modules` (
   `id` int(11) NOT NULL,
-  `entityType` varchar(45) NOT NULL,
-  `mode` varchar(45) DEFAULT NULL,
-  `entityId` int(11) NOT NULL,
-  `predicate` tinyint(4) DEFAULT NULL,
-  `poi` varchar(45) DEFAULT NULL,
-  `type` char(1) DEFAULT 'a' COMMENT 'a => Activate, d => Deactivate',
+  `name` varchar(45) NOT NULL,
+  `author` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `modules`
+--
+
+INSERT INTO `modules` (`id`, `name`, `author`, `created_at`, `modified_at`) VALUES
+(2, 'HAR', 1, '2018-07-02 13:19:36', '2018-07-02 13:19:36'),
+(3, 'XOR', 1, '2018-07-02 13:19:43', '2018-07-02 13:19:43'),
+(4, 'HGR', 1, '2018-07-02 13:19:50', '2018-07-02 13:19:50');
 
 -- --------------------------------------------------------
 
@@ -493,7 +605,7 @@ CREATE TABLE `operations` (
 -- Table structure for table `overlays`
 --
 
-CREATE TABLE `overlays` (
+CREATE TABLE IF NOT EXISTS `overlays` (
   `id` int(11) NOT NULL,
   `predicates_id` tinyint(4) NOT NULL,
   `type` tinyint(4) NOT NULL,
@@ -508,7 +620,7 @@ CREATE TABLE `overlays` (
 -- Table structure for table `overlay_types`
 --
 
-CREATE TABLE `overlay_types` (
+CREATE TABLE IF NOT EXISTS `overlay_types` (
   `id` tinyint(4) NOT NULL,
   `name` varchar(45) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -519,7 +631,7 @@ CREATE TABLE `overlay_types` (
 -- Table structure for table `persons`
 --
 
-CREATE TABLE `persons` (
+CREATE TABLE IF NOT EXISTS `persons` (
   `id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
   `twitter` varchar(45) DEFAULT NULL,
@@ -529,7 +641,7 @@ CREATE TABLE `persons` (
   `author` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `persons`
@@ -548,7 +660,8 @@ INSERT INTO `persons` (`id`, `name`, `twitter`, `mbox`, `detectable`, `persona`,
 (10, 'Estell Schamberger', 'abdul53', 'juston06@lebsack.com', 9, 'persona/nam-quaerat-repellendus-delectus', 1, '1983-01-15 09:22:25', '2006-12-20 16:40:34'),
 (11, 'Rizwan Ali', 'rizalishan', 'rizalishan@ll.com', 10, 'persona/learner', 3, '2018-02-15 10:37:11', '2018-02-15 10:37:11'),
 (12, 'Rizwan Ali', 'test', 'test001@test.com', 6, 'person/learner', 3, '2018-02-15 10:38:01', '2018-02-15 10:38:01'),
-(13, 'test', 'asdf', 'asdf@gs.com', 6, 'persona/test', 3, '2018-02-15 15:11:58', '2018-02-15 15:11:58');
+(13, 'test', 'asdf', 'asdf@gs.com', 6, 'persona/test', 3, '2018-02-15 15:11:58', '2018-02-15 15:11:58'),
+(14, 'Rizwan Ali', 'rizalishan', 'rizalishan@gmail.com', 6, 'person', 3, '2018-05-08 12:53:04', '2018-05-08 12:53:04');
 
 -- --------------------------------------------------------
 
@@ -556,7 +669,7 @@ INSERT INTO `persons` (`id`, `name`, `twitter`, `mbox`, `detectable`, `persona`,
 -- Table structure for table `places`
 --
 
-CREATE TABLE `places` (
+CREATE TABLE IF NOT EXISTS `places` (
   `id` int(11) NOT NULL,
   `id_name` varchar(100) NOT NULL,
   `name` varchar(45) NOT NULL,
@@ -564,7 +677,7 @@ CREATE TABLE `places` (
   `author` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `places`
@@ -588,7 +701,7 @@ INSERT INTO `places` (`id`, `id_name`, `name`, `detectable`, `author`, `created_
 -- Table structure for table `pois`
 --
 
-CREATE TABLE `pois` (
+CREATE TABLE IF NOT EXISTS `pois` (
   `id` int(11) NOT NULL,
   `thing` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
@@ -598,7 +711,7 @@ CREATE TABLE `pois` (
   `relativeTo` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `pois`
@@ -625,13 +738,13 @@ INSERT INTO `pois` (`id`, `thing`, `name`, `x`, `y`, `z`, `relativeTo`, `created
 -- Table structure for table `predicates`
 --
 
-CREATE TABLE `predicates` (
+CREATE TABLE IF NOT EXISTS `predicates` (
   `id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `author` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `predicates`
@@ -655,11 +768,11 @@ INSERT INTO `predicates` (`id`, `name`, `author`, `created_at`, `modified_at`) V
 -- Table structure for table `predicate_primitives`
 --
 
-CREATE TABLE `predicate_primitives` (
+CREATE TABLE IF NOT EXISTS `predicate_primitives` (
   `predicate` int(11) DEFAULT NULL,
   `primitive` int(11) DEFAULT NULL,
   `tmp` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `predicate_primitives`
@@ -683,7 +796,7 @@ INSERT INTO `predicate_primitives` (`predicate`, `primitive`, `tmp`) VALUES
 -- Table structure for table `primitives`
 --
 
-CREATE TABLE `primitives` (
+CREATE TABLE IF NOT EXISTS `primitives` (
   `id` int(11) NOT NULL,
   `overlay` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
@@ -695,7 +808,7 @@ CREATE TABLE `primitives` (
   `author` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `primitives`
@@ -719,10 +832,10 @@ INSERT INTO `primitives` (`id`, `overlay`, `name`, `type`, `symbol`, `size`, `ur
 -- Table structure for table `primitive_types`
 --
 
-CREATE TABLE `primitive_types` (
+CREATE TABLE IF NOT EXISTS `primitive_types` (
   `id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `primitive_types`
@@ -739,7 +852,7 @@ INSERT INTO `primitive_types` (`id`, `name`) VALUES
 -- Table structure for table `resources`
 --
 
-CREATE TABLE `resources` (
+CREATE TABLE IF NOT EXISTS `resources` (
   `tmp` int(11) NOT NULL,
   `id` int(11) NOT NULL,
   `type` varchar(100) NOT NULL,
@@ -747,7 +860,7 @@ CREATE TABLE `resources` (
   `author` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=106 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `resources`
@@ -853,7 +966,12 @@ INSERT INTO `resources` (`tmp`, `id`, `type`, `workplace`, `author`, `created_at
 (97, 8, 'Configurables\\Device', 10, 2, '1994-06-20 12:30:38', '1995-01-10 00:20:41'),
 (98, 3, 'Tangibles\\Place', 10, 2, '1971-04-28 19:05:27', '2014-09-23 08:22:26'),
 (99, 9, 'Triggers\\Predicate', 8, 2, '2008-07-26 09:10:22', '1971-09-19 06:21:19'),
-(100, 8, 'Triggers\\Detectable', 5, 1, '1995-10-08 16:35:57', '1976-12-31 22:03:06');
+(100, 8, 'Triggers\\Detectable', 5, 1, '1995-10-08 16:35:57', '1976-12-31 22:03:06'),
+(101, 6, 'Sensor', 13, 3, '2018-05-08 16:53:16', '2018-05-08 16:53:16'),
+(102, 6, 'Sensor', 14, 3, '2018-05-08 16:57:23', '2018-05-08 16:57:23'),
+(103, 6, 'Sensor', 15, 3, '2018-05-09 14:42:32', '2018-05-09 14:42:32'),
+(104, 9, 'Sensor', 16, 3, '2018-07-02 13:08:25', '2018-07-02 13:08:25'),
+(105, 10, 'Sensor', 16, 3, '2018-07-02 13:08:25', '2018-07-02 13:08:25');
 
 -- --------------------------------------------------------
 
@@ -861,27 +979,27 @@ INSERT INTO `resources` (`tmp`, `id`, `type`, `workplace`, `author`, `created_at
 -- Table structure for table `sensors`
 --
 
-CREATE TABLE `sensors` (
+CREATE TABLE IF NOT EXISTS `sensors` (
   `id` int(11) NOT NULL,
+  `id_name` varchar(100) NOT NULL,
   `name` varchar(45) NOT NULL,
   `uri` varchar(45) NOT NULL,
-  `username` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
+  `username` varchar(45) DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  `type` varchar(100) NOT NULL DEFAULT 'sensor',
   `author` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `sensors`
 --
 
-INSERT INTO `sensors` (`id`, `name`, `uri`, `username`, `password`, `author`, `created_at`, `modified_at`) VALUES
-(1, 'arduino', 'http://sensors.arlem:8954?clientid=8966', 'username', '$2y$10$op28ZLqrZlJhV2CAjosmLeZlBpu2r44M2penEO', 1, '2008-10-30 12:02:14', '2018-02-15 10:50:33'),
-(2, 'nihil', 'http://sensors.arlem:8970?clientid=8975', 'bdavis', '$2y$10$fPAvZpAyG.pwSWZNm6FMOeHK6nDhsusrE6/Ghy', 1, '1988-09-06 07:11:38', '1984-10-19 08:18:46'),
-(3, 'tenetur', 'http://sensors.arlem:8970?clientid=8942', 'theron84', '$2y$10$2K73GiT2.7VinBiUvjfTV.MgaVA1CytILJOq7W', 2, '1985-01-22 15:49:47', '2005-12-18 21:24:28'),
-(4, 'repellat', 'http://sensors.arlem:8944?clientid=8982', 'dgoyette', '$2y$10$9ggvWkA8tv/ZnpqT6jvF8.eGFTJu.G5tkUveJO', 2, '2009-01-20 17:28:33', '1990-02-20 01:17:01'),
-(5, 'necessitatibus', 'http://sensors.arlem:8984?clientid=8996', 'pwalker', '$2y$10$HaQJPFZcjUpKKnkBi9SFVOjXeUE9ZZGG/K/UU1', 2, '1996-08-26 11:01:37', '2007-10-04 12:42:48');
+INSERT INTO `sensors` (`id`, `id_name`, `name`, `uri`, `username`, `password`, `type`, `author`, `created_at`, `modified_at`) VALUES
+(6, '', 'Chest Mounted Accelerometer', 'i5/sensors/cmacc', '', '', 'sensor', 3, '2018-05-08 12:51:32', '2018-05-08 12:51:32'),
+(9, 'binary0', 'Binary One', '/i5/binary/0', 'rali', 'rizwan', 'sensor', 3, '2018-07-02 13:07:12', '2018-07-02 14:30:36'),
+(10, 'binary1', 'Binary Two', '/i5/binary/1', '', NULL, 'sensor', 3, '2018-07-02 13:08:11', '2018-07-02 14:30:39');
 
 -- --------------------------------------------------------
 
@@ -889,7 +1007,7 @@ INSERT INTO `sensors` (`id`, `name`, `uri`, `username`, `password`, `author`, `c
 -- Table structure for table `sensor_data_types`
 --
 
-CREATE TABLE `sensor_data_types` (
+CREATE TABLE IF NOT EXISTS `sensor_data_types` (
   `id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
   `type` varchar(45) NOT NULL,
@@ -900,14 +1018,13 @@ CREATE TABLE `sensor_data_types` (
 
 --
 -- Stand-in structure for view `tangibles`
--- (See below for the actual view)
 --
-CREATE TABLE `tangibles` (
+CREATE TABLE IF NOT EXISTS `tangibles` (
 `id` int(11)
 ,`name` varchar(45)
 ,`type` varchar(6)
 ,`urn` varchar(45)
-,`detectable` int(11)
+,`detectable` bigint(20)
 ,`author` int(11)
 ,`created` timestamp
 );
@@ -918,7 +1035,7 @@ CREATE TABLE `tangibles` (
 -- Table structure for table `things`
 --
 
-CREATE TABLE `things` (
+CREATE TABLE IF NOT EXISTS `things` (
   `id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
   `id_name` varchar(50) NOT NULL,
@@ -927,7 +1044,7 @@ CREATE TABLE `things` (
   `author` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `things`
@@ -938,7 +1055,7 @@ INSERT INTO `things` (`id`, `name`, `id_name`, `detectable`, `urn`, `author`, `c
 (2, 'Myrl Pollich', 'blair34', 4, 'thing/saepe-eveniet-ad-dignissimos-quas-ea', 1, '1997-10-01 02:23:44', '1974-09-02 13:01:30'),
 (3, 'Bettye Cruickshank', 'goldner.kendall', 2, 'thing/qui-occaecati-dolorem-amet', 1, '1992-11-19 10:37:30', '1987-12-01 15:06:59'),
 (4, 'Dorothea Willms', 'cecil.batz', 2, 'thing/qui-dolorum-molestiae-enim-autem-maxime', 1, '2013-06-15 03:29:31', '1980-08-13 23:50:10'),
-(5, 'Prof. Mario O\'Hara', 'pacocha.charity', 6, 'thing/et-autem-est-fuga-sapiente', 2, '2008-06-23 16:35:41', '1993-07-20 20:09:18'),
+(5, 'Prof. Mario O''Hara', 'pacocha.charity', 6, 'thing/et-autem-est-fuga-sapiente', 2, '2008-06-23 16:35:41', '1993-07-20 20:09:18'),
 (6, 'Tanner Dicki MD', 'viva28', 3, 'thing/amet-eum-accusamus-eos-est-itaque-qui-m', 2, '1993-01-06 23:19:14', '1988-01-13 20:27:24'),
 (7, 'Belle Reichel', 'udeckow', 9, 'thing/voluptate-qui-est-ut-rerum-neque-dolore', 1, '1986-09-30 01:01:29', '1980-07-27 10:40:19'),
 (8, 'Paula Boehm', 'bednar.cristobal', 3, 'thing/et-velit-omnis-inventore-et', 2, '1999-12-25 21:28:15', '1975-07-25 06:12:57'),
@@ -949,9 +1066,8 @@ INSERT INTO `things` (`id`, `name`, `id_name`, `detectable`, `urn`, `author`, `c
 
 --
 -- Stand-in structure for view `triggers`
--- (See below for the actual view)
 --
-CREATE TABLE `triggers` (
+CREATE TABLE IF NOT EXISTS `triggers` (
 `id` int(11)
 ,`name` varchar(100)
 ,`author` int(11)
@@ -965,10 +1081,10 @@ CREATE TABLE `triggers` (
 -- Table structure for table `viewports`
 --
 
-CREATE TABLE `viewports` (
+CREATE TABLE IF NOT EXISTS `viewports` (
   `id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `viewports`
@@ -985,13 +1101,13 @@ INSERT INTO `viewports` (`id`, `name`) VALUES
 -- Table structure for table `warnings`
 --
 
-CREATE TABLE `warnings` (
+CREATE TABLE IF NOT EXISTS `warnings` (
   `id` int(11) NOT NULL,
   `name` varchar(100) DEFAULT NULL,
   `author` int(11) DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `warnings`
@@ -1015,7 +1131,7 @@ INSERT INTO `warnings` (`id`, `name`, `author`, `created_at`, `modified_at`) VAL
 -- Table structure for table `warning_primitives`
 --
 
-CREATE TABLE `warning_primitives` (
+CREATE TABLE IF NOT EXISTS `warning_primitives` (
   `warning` int(11) DEFAULT NULL,
   `primitive` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -1042,13 +1158,13 @@ INSERT INTO `warning_primitives` (`warning`, `primitive`) VALUES
 -- Table structure for table `workplaces`
 --
 
-CREATE TABLE `workplaces` (
+CREATE TABLE IF NOT EXISTS `workplaces` (
   `id` int(11) NOT NULL,
   `name` varchar(45) NOT NULL,
   `author` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `workplaces`
@@ -1064,7 +1180,10 @@ INSERT INTO `workplaces` (`id`, `name`, `author`, `created_at`, `modified_at`) V
 (7, 'Miss Alana Hartmann', 1, '1985-07-28 03:46:44', '1992-01-02 11:52:49'),
 (8, 'Adriana Reichert', 2, '1993-04-13 06:19:24', '1998-06-09 00:48:39'),
 (9, 'Donna Kilback', 1, '2005-11-10 06:04:05', '2009-07-01 17:35:59'),
-(10, 'Era Klocko', 1, '1985-02-10 09:39:46', '2001-02-08 08:58:26');
+(10, 'Era Klocko', 1, '1985-02-10 09:39:46', '2001-02-08 08:58:26'),
+(14, 'Test Two', 3, '2018-05-08 16:57:23', '2018-05-08 16:57:23'),
+(15, 'Test One', 3, '2018-05-09 14:42:32', '2018-05-09 14:42:32'),
+(16, 'XOR', 3, '2018-07-02 13:08:25', '2018-07-02 13:08:25');
 
 -- --------------------------------------------------------
 
@@ -1072,13 +1191,22 @@ INSERT INTO `workplaces` (`id`, `name`, `author`, `created_at`, `modified_at`) V
 -- Table structure for table `workplace_activities`
 --
 
-CREATE TABLE `workplace_activities` (
+CREATE TABLE IF NOT EXISTS `workplace_activities` (
   `workplaces_id` int(11) NOT NULL,
   `activities_id` int(11) NOT NULL,
   `author` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `modified_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `workplace_activities`
+--
+
+INSERT INTO `workplace_activities` (`workplaces_id`, `activities_id`, `author`, `created_at`, `modified_at`) VALUES
+(1, 20, 1, '2018-06-12 17:42:37', '2018-06-12 17:42:37'),
+(1, 21, 1, '2018-06-12 17:42:37', '2018-06-12 17:42:37'),
+(16, 22, 1, '2018-07-02 13:37:07', '2018-07-02 13:37:07');
 
 -- --------------------------------------------------------
 
@@ -1087,7 +1215,16 @@ CREATE TABLE `workplace_activities` (
 --
 DROP TABLE IF EXISTS `configurables`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `configurables`  AS  select `apps`.`id` AS `id`,`apps`.`name` AS `name`,'apps' AS `category`,'' AS `type`,`apps`.`author` AS `author`,`apps`.`created_at` AS `created` from `apps` union select `devices`.`id` AS `id`,`devices`.`name` AS `name`,'device' AS `category`,`devices`.`type` AS `type`,`devices`.`author` AS `author`,`devices`.`created_at` AS `created` from `devices` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `configurables` AS select `apps`.`id` AS `id`,`apps`.`name` AS `name`,'apps' AS `category`,'' AS `type`,`apps`.`author` AS `author`,`apps`.`created_at` AS `created` from `apps` union select `devices`.`id` AS `id`,`devices`.`name` AS `name`,'device' AS `category`,`devices`.`type` AS `type`,`devices`.`author` AS `author`,`devices`.`created_at` AS `created` from `devices`;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `entities`
+--
+DROP TABLE IF EXISTS `entities`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `entities` AS select `sensors`.`id` AS `id`,`sensors`.`name` AS `name`,`sensors`.`type` AS `type` from `sensors` union select `configurables`.`id` AS `id`,`configurables`.`name` AS `name`,`configurables`.`category` AS `type` from `configurables` union select `tangibles`.`id` AS `id`,`tangibles`.`name` AS `name`,`tangibles`.`type` AS `type` from `tangibles` union select `triggers`.`id` AS `id`,`triggers`.`name` AS `name`,`triggers`.`type` AS `type` from `triggers`;
 
 -- --------------------------------------------------------
 
@@ -1096,7 +1233,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `tangibles`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `tangibles`  AS  select `places`.`id` AS `id`,`places`.`name` AS `name`,'place' AS `type`,'' AS `urn`,`places`.`detectable` AS `detectable`,`places`.`author` AS `author`,`places`.`created_at` AS `created` from `places` union select `persons`.`id` AS `id`,`persons`.`name` AS `name`,'person' AS `type`,`persons`.`persona` AS `urn`,`persons`.`detectable` AS `detectable`,`persons`.`author` AS `author`,`persons`.`created_at` AS `created` from `persons` union select `things`.`id` AS `id`,`things`.`name` AS `name`,'thing' AS `type`,`things`.`urn` AS `urn`,`things`.`detectable` AS `detectable`,`things`.`author` AS `author`,`things`.`created_at` AS `created` from `things` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `tangibles` AS select `places`.`id` AS `id`,`places`.`name` AS `name`,'place' AS `type`,'' AS `urn`,`places`.`detectable` AS `detectable`,`places`.`author` AS `author`,`places`.`created_at` AS `created` from `places` union select `persons`.`id` AS `id`,`persons`.`name` AS `name`,'person' AS `type`,`persons`.`persona` AS `urn`,`persons`.`detectable` AS `detectable`,`persons`.`author` AS `author`,`persons`.`created_at` AS `created` from `persons` union select `modules`.`id` AS `id`,`modules`.`name` AS `name`,'module' AS `type`,'' AS `urn`,0 AS `detectable`,`modules`.`author` AS `author`,`modules`.`created_at` AS `created` from `modules` union select `things`.`id` AS `id`,`things`.`name` AS `name`,'thing' AS `type`,`things`.`urn` AS `urn`,`things`.`detectable` AS `detectable`,`things`.`author` AS `author`,`things`.`created_at` AS `created` from `things`;
 
 -- --------------------------------------------------------
 
@@ -1105,7 +1242,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `triggers`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `triggers`  AS  select `predicates`.`id` AS `id`,`predicates`.`name` AS `name`,`predicates`.`author` AS `author`,'predicate' AS `type`,`predicates`.`created_at` AS `created` from `predicates` union select `warnings`.`id` AS `id`,`warnings`.`name` AS `name`,`warnings`.`author` AS `author`,'warning' AS `type`,`warnings`.`created_at` AS `created` from `warnings` union select `hazards`.`id` AS `id`,`hazards`.`name` AS `name`,`hazards`.`author` AS `author`,'hazard' AS `type`,`hazards`.`created_at` AS `created` from `hazards` union select `detectables`.`id` AS `id`,`detectables`.`type` AS `type`,`detectables`.`author` AS `author`,'detectable' AS `astype`,`detectables`.`created_at` AS `created` from `detectables` ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `triggers` AS select `predicates`.`id` AS `id`,`predicates`.`name` AS `name`,`predicates`.`author` AS `author`,'predicate' AS `type`,`predicates`.`created_at` AS `created` from `predicates` union select `warnings`.`id` AS `id`,`warnings`.`name` AS `name`,`warnings`.`author` AS `author`,'warning' AS `type`,`warnings`.`created_at` AS `created` from `warnings` union select `hazards`.`id` AS `id`,`hazards`.`name` AS `name`,`hazards`.`author` AS `author`,'hazard' AS `type`,`hazards`.`created_at` AS `created` from `hazards` union select `detectables`.`id` AS `id`,`detectables`.`type` AS `type`,`detectables`.`author` AS `author`,'detectable' AS `astype`,`detectables`.`created_at` AS `created` from `detectables`;
 
 --
 -- Indexes for dumped tables
@@ -1127,6 +1264,12 @@ ALTER TABLE `action_triggers`
 -- Indexes for table `action_trigger_modes`
 --
 ALTER TABLE `action_trigger_modes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `action_trigger_operations`
+--
+ALTER TABLE `action_trigger_operations`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1208,9 +1351,9 @@ ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `operations`
+-- Indexes for table `modules`
 --
-ALTER TABLE `operations`
+ALTER TABLE `modules`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1277,7 +1420,8 @@ ALTER TABLE `resources`
 -- Indexes for table `sensors`
 --
 ALTER TABLE `sensors`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uniqe_id` (`id_name`);
 
 --
 -- Indexes for table `sensor_data_types`
@@ -1324,207 +1468,177 @@ ALTER TABLE `workplace_activities`
 -- AUTO_INCREMENT for table `actions`
 --
 ALTER TABLE `actions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT for table `action_triggers`
 --
 ALTER TABLE `action_triggers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT for table `action_trigger_modes`
 --
 ALTER TABLE `action_trigger_modes`
-  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `action_trigger_operations`
+--
+ALTER TABLE `action_trigger_operations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `activities`
 --
 ALTER TABLE `activities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `apps`
 --
 ALTER TABLE `apps`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `app_types`
 --
 ALTER TABLE `app_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `authors`
 --
 ALTER TABLE `authors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `constraints`
 --
 ALTER TABLE `constraints`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `detectables`
 --
 ALTER TABLE `detectables`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `devices`
 --
 ALTER TABLE `devices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `device_types`
 --
 ALTER TABLE `device_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `external`
 --
 ALTER TABLE `external`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `hazards`
 --
 ALTER TABLE `hazards`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `instructions`
 --
 ALTER TABLE `instructions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `locations`
 --
 ALTER TABLE `locations`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '	';
-
 --
--- AUTO_INCREMENT for table `operations`
+-- AUTO_INCREMENT for table `modules`
 --
-ALTER TABLE `operations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
+ALTER TABLE `modules`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `overlays`
 --
 ALTER TABLE `overlays`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `overlay_types`
 --
 ALTER TABLE `overlay_types`
   MODIFY `id` tinyint(4) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `persons`
 --
 ALTER TABLE `persons`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `places`
 --
 ALTER TABLE `places`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `pois`
 --
 ALTER TABLE `pois`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=16;
 --
 -- AUTO_INCREMENT for table `predicates`
 --
 ALTER TABLE `predicates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `predicate_primitives`
 --
 ALTER TABLE `predicate_primitives`
-  MODIFY `tmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
+  MODIFY `tmp` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `primitives`
 --
 ALTER TABLE `primitives`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `primitive_types`
 --
 ALTER TABLE `primitive_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `resources`
 --
 ALTER TABLE `resources`
-  MODIFY `tmp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
-
+  MODIFY `tmp` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=106;
 --
 -- AUTO_INCREMENT for table `sensors`
 --
 ALTER TABLE `sensors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `sensor_data_types`
 --
 ALTER TABLE `sensor_data_types`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `things`
 --
 ALTER TABLE `things`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `viewports`
 --
 ALTER TABLE `viewports`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `warnings`
 --
 ALTER TABLE `warnings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `workplaces`
 --
 ALTER TABLE `workplaces`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `workplace_activities`
 --
 ALTER TABLE `workplace_activities`
-  MODIFY `workplaces_id` int(11) NOT NULL AUTO_INCREMENT;
-COMMIT;
-
+  MODIFY `workplaces_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
